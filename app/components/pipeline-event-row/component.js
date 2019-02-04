@@ -14,6 +14,13 @@ export default Component.extend({
       return statusIcon(this.get('event.status'), true);
     }
   }),
+  prNumber: computed('event.pr.url', {
+    get() {
+      let url = this.get('event.pr.url');
+
+      return url.split('/').pop();
+    }
+  }),
   actions: {
     clickRow() {
       const fn = get(this, 'eventClick');

@@ -2,7 +2,11 @@
   <div class="status">{{fa-icon icon fixedWidth=true}}</div>
   <div class="detail">
     <div class="commit" title="{{event.causeMessage}}">
-      <a class="{{if (eq event.id lastSuccessful) "last-successful"}}" href="{{event.commit.url}}">#{{event.truncatedSha}}</a>
+      {{#if (and (eq event.type 'pr') event.pr.url)}}
+        <a href="{{event.pr.url}}">PR-{{prNumber}}</a>
+      {{else}}
+        <a class="{{if (eq event.id lastSuccessful) "last-successful"}}" href="{{event.commit.url}}">#{{event.truncatedSha}}</a>
+      {{/if}}
     </div>
     <div class="date greyOut">Started {{event.createTimeWords}}</div>
     <span class="message">{{event.commit.message}}</span>

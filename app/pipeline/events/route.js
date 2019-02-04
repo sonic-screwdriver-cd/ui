@@ -20,6 +20,12 @@ export default Route.extend({
         pipelineId: this.get('pipeline.id'),
         page: 1,
         count: ENV.APP.NUM_EVENTS_LISTED
+      }),
+      prEvents: this.store.query('event', {
+        pipelineId: this.get('pipeline.id'),
+        type: 'pr',
+        page: 1,
+        count: ENV.APP.NUM_EVENTS_LISTED
       })
     });
   },

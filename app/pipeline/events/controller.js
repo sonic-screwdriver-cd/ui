@@ -70,6 +70,11 @@ export default Controller.extend(ModelReloaderMixin, {
       return [].concat(this.get('modelEvents'), this.get('paginateEvents'));
     }
   }),
+  prEvents: computed('model.prEvents', {
+    get() {
+      return this.get('model.prEvents').toArray();
+    }
+  }),
   pullRequests: computed('model.jobs', {
     get() {
       const jobs = this.get('model.jobs');
