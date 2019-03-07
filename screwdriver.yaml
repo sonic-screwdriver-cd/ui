@@ -7,6 +7,4 @@ jobs:
       IMAGE_NAME: sdcdui
     template: docker/publish@stable
     steps:
-      - preinit: |
-        curl --silent --location https://rpm.nodesource.com/setup_6.x | sudo bash - && sudo yum -y install nodejs
-        make build
+      - preinit: curl --silent --location https://rpm.nodesource.com/setup_6.x | sudo bash - && sudo yum -y install nodejs && make build
