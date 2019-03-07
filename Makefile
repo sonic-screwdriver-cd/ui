@@ -6,7 +6,7 @@ build:
 	npm install bower && ./node_modules/.bin/bower install --allow-root
 	./node_modules/.bin/ember build --environment production
 	tar -C dist -cvzf sdui.tgz .
-	docker build . -t screwdrivercd/ui:local
+#	docker build . -t screwdrivercd/ui:local
 
 rebuild:
 	rm -f sdui.tgz
