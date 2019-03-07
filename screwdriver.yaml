@@ -1,84 +1,12 @@
 shared:
-  image: node:8
 
 jobs:
-  main:
-    environment:
-      COVERAGE: "true"
-      SD_SONAR_OPTS: "-Dsonar.sources=app -Dsonar.javascript.lcov.reportPath=coverage/lcov.info"
-    steps:
-      - install: npm install
-      - bower: npm install bower && ./node_modules/.bin/bower install --allow-root
-      - install-browsers: ./bin/setup_chrome.sh
-      - test: npm test
-    requires:
-      - ~pr
-      - ~commit
-
-  # Publish the package to GitHub and build docker image
   publish:
     environment:
-      RELEASE_FILE: sdui.tgz
-      DOCKER_REPO: screwdrivercd/ui
+      REPO_NAME: shoyoshi
+      IMAGE_NAME: sdcdui
+    template: docker/publish@stable
     steps:
-      - setup-ci: git clone https://github.com/screwdriver-cd/toolbox.git ci
-      - install: npm install
-      - bower: npm install bower && ./node_modules/.bin/bower install --allow-root
-      - build: ./node_modules/.bin/ember build --environment production
-      - package: tar -C dist -cvzf $RELEASE_FILE .
-      - tag: ./ci/git-tag.sh
-      - publish: ./ci/git-release.sh
-      - docker: |
-              export DOCKER_TAG=`cat VERSION`
-              ./ci/docker-trigger.sh
-    secrets:
-      # Pushing tags to Git
-      - GIT_KEY
-      # Pushing releases to GitHub
-      - GITHUB_TOKEN
-      # Trigger a Docker Hub build
-      - DOCKER_TRIGGER
-    requires:
-      - main
-
-  # Deploy to our beta environment and run tests
-  beta:
-    steps:
-      - setup-ci: git clone https://github.com/screwdriver-cd/toolbox.git ci
-      - get-tag: ./ci/git-latest.sh
-      - wait-docker: DOCKER_TAG=`cat VERSION` ./ci/docker-wait.sh
-      - deploy-k8s: K8S_TAG=`cat VERSION` ./ci/k8s-deploy.sh
-      - test: sleep 30; curl --silent --fail -o /dev/null https://beta.cd.screwdriver.cd
-    environment:
-      DOCKER_REPO: screwdrivercd/ui
-      K8S_CONTAINER: screwdriver-ui
-      K8S_IMAGE: screwdrivercd/ui
-      K8S_HOST: api.ossd.k8s.screwdriver.cd
-      K8S_DEPLOYMENT: sdui-beta
-      SD_UI: beta.cd.screwdriver.cd
-    secrets:
-      # Talking to Kubernetes
-      - K8S_TOKEN
-    requires:
-      - publish
-
-  # Deploy to our prod environment and run tests
-  prod:
-    steps:
-      - setup-ci: git clone https://github.com/screwdriver-cd/toolbox.git ci
-      - get-tag: ./ci/git-latest.sh
-      - wait-docker: DOCKER_TAG=`cat VERSION` ./ci/docker-wait.sh
-      - deploy-k8s: K8S_TAG=`cat VERSION` ./ci/k8s-deploy.sh
-      - test: sleep 30; curl --silent --fail -o /dev/null https://cd.screwdriver.cd
-    environment:
-      DOCKER_REPO: screwdrivercd/ui
-      K8S_CONTAINER: screwdriver-ui
-      K8S_IMAGE: screwdrivercd/ui
-      K8S_HOST: api.ossd.k8s.screwdriver.cd
-      K8S_DEPLOYMENT: sdui
-      SD_UI: cd.screwdriver.cd
-    secrets:
-      # Talking to Kubernetes
-      - K8S_TOKEN
-    requires:
-      - beta
+      - preinit: |
+        curl --silent --location https://rpm.nodesource.com/setup_6.x | sudo bash - && sudo yum -y install nodejs
+        make build
