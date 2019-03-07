@@ -95,8 +95,9 @@ export default Controller.extend(ModelReloaderMixin, {
       if (selected === 'aggregate') {
         return null;
       }
+      const events = [].concat(get(this, 'events'), get(this, 'prEvents'));
 
-      return get(this, 'events').find(e => get(e, 'id') === selected);
+      return events.find(e => get(e, 'id') === selected);
     }
   }),
 
