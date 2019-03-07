@@ -1,7 +1,6 @@
-shared:
-
 jobs:
   publish:
+    requires: [ ~commit ]
     environment:
       REPO_NAME: shoyoshi
       IMAGE_NAME: sdcdui
