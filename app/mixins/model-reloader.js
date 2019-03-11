@@ -33,12 +33,15 @@ export default Mixin.create({
    */
   reloadModel() {
     const modelToReload = this.get('modelToReload');
+    console.log('modelToReload:', modelToReload);
     let model;
 
     // Let Controller provide a reload() to refresh it's dependencies
     if (!modelToReload && typeof this.reload === 'function') {
+      console.log('empty modelToReload');
       model = this;
     } else {
+      console.log('full modelToReload');
       model = this.get(modelToReload);
     }
 

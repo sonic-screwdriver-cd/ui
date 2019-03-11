@@ -14,6 +14,10 @@ export default Component.extend({
       const startFrom = get(this, 'startFrom');
       const jobs = getWithDefault(this, 'jobs', []);
       const graph = getWithDefault(this, 'workflowGraph', { nodes: [], edges: [] });
+      console.log('minified:', this.get('minified'));
+      console.log('builds:', this.get('builds'));
+      console.log('jobs:', this.get('jobs'));
+      console.log('graph:', this.get('graph'));
 
       return decorateGraph({
         inputGraph: this.get('minified') ? subgraphFilter(graph, startFrom) : graph,

@@ -53,8 +53,7 @@ export default DS.RESTAdapter.extend(DataAdapterMixin, {
     if (Array.isArray(payload[key])) {
       payload[key].map(o => this.insertLink(key, o));
     } else {
-      this.insertLink(key, payload[key]);
-    }
+      this.insertLink(key, payload[key]); }
   },
 
   /**
@@ -234,13 +233,21 @@ export default DS.RESTAdapter.extend(DataAdapterMixin, {
    * @return {String} url
    */
   urlForQuery(query, modelName) {
-    if (modelName === 'event') {
+    console.log('urlForQuery', modelName, query);
+    if (modelName === 'event' && query.pipelineId) {
       const pipelineId = query.pipelineId;
 
       delete query.pipelineId;
 
       return `${ENV.APP.SDAPI_HOSTNAME}/${ENV.APP.SDAPI_NAMESPACE}`
         + `/pipelines/${pipelineId}/events`;
+    } else if (modelName === 'event' && query.eventId) {
+      const eventId = query.eventId;
+
+      delete query.eventId;
+
+      return `${ENV.APP.SDAPI_HOSTNAME}/${ENV.APP.SDAPI_NAMESPACE}`
+        + `/events/${eventId}`;
     }
 
     return this._super(...arguments);

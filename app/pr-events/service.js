@@ -5,6 +5,7 @@ import ENV from 'screwdriver-ui/config/environment';
 
 export default Service.extend({
   session: service(),
+  store: service(),
   /**
    * Calls the events api and filters based on type prs
    * @method getPRevents
@@ -79,5 +80,34 @@ export default Service.extend({
         resolve(eventBuildPairs);
       })
     );
+  },
+  /**
+   * Get a latest pr event of a specified PR job
+   * @method getLatestPRjobEvent
+   * @param  {Object}  job           PR job
+   * @return {Promise}               Resolves to prEvent
+   */
+  getLatestPRjobEvent(job) {
+    return job.get('builds').then((builds) => {
+      if (builds.get('length') === 0) {
+        return Promise.resolve(null);
+      }
+
+      const build = builds.objectAt(0);
+      const eventId = build.get('eventId');
+      console.log('eventId:', eventId);
+
+      return this.get('store').findRecord('event', eventId);
+    });
+    /*
+    const build = job.get('lastBuild');
+    if (!build) {
+      return;
+    }
+    const eventId = build.get('eventId');
+    console.log('eventId:', eventId);
+
+    return this.get('store').findRecord('event', eventId);
+    */
   }
 });

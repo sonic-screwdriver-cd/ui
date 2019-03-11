@@ -5,9 +5,11 @@ import { jwt_decode as decoder } from 'ember-cli-jwt-decode';
 
 import ENV from 'screwdriver-ui/config/environment';
 import ModelReloaderMixin from 'screwdriver-ui/mixins/model-reloader';
+import { isPRJob } from 'screwdriver-ui/utils/build';
 
 export default Controller.extend(ModelReloaderMixin, {
   session: service(),
+  prEventsService: service('pr-events'),
   init() {
     this._super(...arguments);
     this.startReloading();
@@ -32,30 +34,64 @@ export default Controller.extend(ModelReloaderMixin, {
     get() {
       const jobs = this.get('model.jobs');
 
-      return jobs.filter(j => !/^PR-/.test(j.get('name')));
+      return jobs.filter(j => !isPRJob(j.get('name')));
+    }
+  }),
+  prJobs: computed('model.jobs', {
+    get() {
+      console.log('prJobs!!!!!');
+      const jobs = this.get('model.jobs');
+
+      return jobs.filter(j => isPRJob(j.get('name')));
+    }
+  }),
+  latestPRevents: [],
+  updatePRevents: computed('prJobs', 'prJobs.@each.lastBuild', {
+    get() {
+      const prJobs = this.get('prJobs');
+
+      return Promise.all(prJobs.map((job) => {
+        return this.get('prEventsService').getLatestPRjobEvent(job);
+      })).then((events) => {
+        events.forEach((e) => {
+          console.log('latestPRevent.buildId:', get(e, 'buildId'));
+        });
+        this.set('latestPRevents', events);
+      });
     }
   }),
   paginateEvents: [],
+  currentEventType: computed('activeTab', {
+    get() {
+      return this.get('activeTab') === 'pulls' ? 'pr' : 'pipeline';
+    }
+  }),
   // Aggregates first page events and events via ModelReloaderMixin
-  modelEvents: computed('model.events', {
+  modelEvents: computed('model.events', 'currentEventType', {
     get() {
       let previousModelEvents = this.get('previousModelEvents') || [];
       let currentModelEvents = this.get('model.events').toArray();
       let newModelEvents = [];
       const newPipelineId = this.get('pipeline.id');
+      console.log('currentModelEvents', currentModelEvents);
+      console.log('previousModelEvents', previousModelEvents);
 
       // purge unmatched pipeline events
-      if (previousModelEvents.some(e => e.get('pipelineId') !== newPipelineId)) {
+      if (previousModelEvents.some(e => e.get('pipelineId') !== newPipelineId)
+         || previousModelEvents.some(e => e.get('type') !== this.get('currentEventType'))) {
         newModelEvents = [...currentModelEvents];
+        console.log('mode changed!!!');
 
         this.set('paginateEvents', []);
         this.set('previousModelEvents', newModelEvents);
         this.set('moreToShow', true);
+        this.set('eventsPage', 1);
 
         return newModelEvents;
       }
 
       previousModelEvents = previousModelEvents
+        .filter(e => e.type === this.get('currentEventType'))
         .filter(e => !currentModelEvents.find(c => c.id === e.id));
 
       newModelEvents = currentModelEvents.concat(previousModelEvents);
@@ -65,21 +101,24 @@ export default Controller.extend(ModelReloaderMixin, {
       return newModelEvents;
     }
   }),
-  events: computed('modelEvents', 'paginateEvents', {
+  // Aggregates first page events and events via ModelReloaderMixin
+  prChainEnabled: computed('pipeline.prChain', {
     get() {
-      return [].concat(this.get('modelEvents'), this.get('paginateEvents'));
+      return this.get('pipeline.prChain');
     }
   }),
-  prEvents: computed('model.prEvents', {
+  events: computed('modelEvents', 'paginateEvents', 'latestPRevents', {
     get() {
-      return this.get('model.prEvents').toArray();
+      console.log('events changed!!!');
+      console.log(this.get('latestPRevents'));
+      return [].concat(this.get('modelEvents'), this.get('paginateEvents'), this.get('latestPRevents'));
     }
   }),
   pullRequests: computed('model.jobs', {
     get() {
       const jobs = this.get('model.jobs');
 
-      return jobs.filter(j => /^PR-/.test(j.get('name'))).sortBy('createTime').reverse();
+      return jobs.filter(j => isPRJob(j.get('name'))).sortBy('createTime').reverse();
     }
   }),
   selectedEvent: computed('selected', 'mostRecent', {
@@ -95,7 +134,7 @@ export default Controller.extend(ModelReloaderMixin, {
       if (selected === 'aggregate') {
         return null;
       }
-      const events = [].concat(get(this, 'events'), get(this, 'prEvents'));
+      const events = [].concat(get(this, 'events'));
 
       return events.find(e => get(e, 'id') === selected);
     }
@@ -129,10 +168,14 @@ export default Controller.extend(ModelReloaderMixin, {
   }),
 
   updateEvents(page) {
+    if (this.get('currentEventType') === 'pr') {
+      return;
+    }
     this.set('isFetching', true);
 
     return get(this, 'store').query('event', {
       pipelineId: get(this, 'pipeline.id'),
+      type: get(this, 'currentEventType'),
       page,
       count: ENV.APP.NUM_EVENTS_LISTED
     })
@@ -143,6 +186,7 @@ export default Controller.extend(ModelReloaderMixin, {
           if (nextEvents.length < ENV.APP.NUM_EVENTS_LISTED) {
             this.set('moreToShow', false);
           }
+          console.log('nextEvents.length', nextEvents.length);
 
           this.set('eventsPage', page);
           this.set('isFetching', false);
@@ -167,7 +211,8 @@ export default Controller.extend(ModelReloaderMixin, {
     },
 
     onEventListScroll({ currentTarget }) {
-      if (this.get('moreToShow') && !this.get('isFetching')) {
+      console.log('onEventListScroll: moreToShow? and isFetching?', this.get('moreToShow'), this.get('isFetching'));
+      if (this.get('moreToShow') && !this.get('isFetching') ) {
         this.checkForMorePage(currentTarget);
       }
     },
@@ -205,6 +250,7 @@ export default Controller.extend(ModelReloaderMixin, {
       const parentEventId = get(event, 'id');
       const startFrom = get(job, 'name');
       const pipelineId = get(this, 'pipeline.id');
+      const type = get(this, 'currentEventType');
       const token = get(this, 'session.data.authenticated.token');
       const user = get(decoder(token), 'username');
       const causeMessage =
@@ -212,6 +258,7 @@ export default Controller.extend(ModelReloaderMixin, {
       const newEvent = this.store.createRecord('event', {
         buildId,
         pipelineId,
+        type,
         startFrom,
         parentBuildId,
         parentEventId,
@@ -220,10 +267,15 @@ export default Controller.extend(ModelReloaderMixin, {
 
       this.set('isShowingModal', true);
 
+      console.log('startDetachedBuild');
       return newEvent.save().then(() => {
         this.set('isShowingModal', false);
+        console.log('modelToReload:', this.get('modelToReload'));
         this.forceReload();
 
+        const path = `pipeline/${newEvent.get('pipelineId')}`;
+
+        console.log('transitionToRoute', path);
         return this.transitionToRoute('pipeline', newEvent.get('pipelineId'));
       }).catch((e) => {
         this.set('isShowingModal', false);

@@ -280,6 +280,11 @@ const subgraphFilter = ({ nodes, edges }, startNode) => {
     return { nodes, edges };
   }
 
+  // startNode can be a PR job in a pipeline with chainPR mode
+  if (startNode.match(/^PR-[0-9]+:/)) {
+    startNode = startNode.split(':')[1];
+  }
+
   let visiting = [startNode];
   let visited = new Set(visiting);
 

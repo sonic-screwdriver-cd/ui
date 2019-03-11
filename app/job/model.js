@@ -3,8 +3,7 @@ import { equal, match } from '@ember/object/computed';
 import ModelReloaderMixin from 'screwdriver-ui/mixins/model-reloader';
 import DS from 'ember-data';
 import ENV from 'screwdriver-ui/config/environment';
-import { isActiveBuild } from 'screwdriver-ui/utils/build';
-
+import { isActiveBuild } from 'screwdriver-ui/utils/build'; 
 export default DS.Model.extend(ModelReloaderMixin, {
   pipelineId: DS.attr('string'),
   name: DS.attr('string'),
@@ -37,8 +36,9 @@ export default DS.Model.extend(ModelReloaderMixin, {
   permutations: DS.attr(),
   builds: DS.hasMany('build', { async: true }),
   isDisabled: equal('state', 'DISABLED'),
-  lastBuild: computed('builds', {
+  lastBuild: computed('builds[]', {
     get() {
+      console.log('updated lastBuild');
       const builds = this.get('builds');
 
       if (builds.length === 0) {

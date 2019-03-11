@@ -10,6 +10,7 @@ export default Route.extend({
   setupController(controller, model) {
     this._super(controller, model);
     controller.set('activeTab', 'events');
+    //controller.set('paginateEvents', []);
   },
   model() {
     this.controllerFor('pipeline.events').set('pipeline', this.get('pipeline'));
@@ -18,12 +19,6 @@ export default Route.extend({
       jobs: this.get('pipeline.jobs'),
       events: this.store.query('event', {
         pipelineId: this.get('pipeline.id'),
-        page: 1,
-        count: ENV.APP.NUM_EVENTS_LISTED
-      }),
-      prEvents: this.store.query('event', {
-        pipelineId: this.get('pipeline.id'),
-        type: 'pr',
         page: 1,
         count: ENV.APP.NUM_EVENTS_LISTED
       })

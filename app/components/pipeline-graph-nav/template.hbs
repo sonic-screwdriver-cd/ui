@@ -12,7 +12,7 @@
     {{/bs-button-group}}
   </div>
   <div class="col-xs-2">
-    {{#if session.isAuthenticated}}
+    {{#if (and (not isPRGraph) session.isAuthenticated)}}
     {{pipeline-start startBuild=(action startBuild)}}
     {{/if}}
   </div>

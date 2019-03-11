@@ -4,12 +4,15 @@
   {{/if}}
 {{/if}}
 
+{{updatePRevents}}
+
 {{info-message message=errorMessage type="warning" icon="exclamation-triangle"}}
 <div class="row">
   <div class="col-xs-12 col-md-9 separator partial-view">
     {{pipeline-graph-nav
       mostRecent=mostRecent
       lastSuccessful=lastSuccessful
+      graphType=currentEventType
       selectedEvent=selectedEvent
       selectedEventObj=selectedEventObj
       selected=selected
@@ -49,15 +52,19 @@
         }}
         {{/tab.pane}}
         {{#tab.pane activeId=activeTab elementId="pulls" title="Pull Requests"}}
-          {{pipeline-events-list
-          events=prEvents
-          selected=(mut selected)
-          selectedEvent=selectedEvent
-          lastSuccessful=lastSuccessful
-          mostRecent=mostRecent
-          eventsPage=eventsPage
-          updateEvents=(action "updateEvents")
-        }}
+          {{#if prChainEnabled}}
+            {{pipeline-events-list
+            events=latestPRevents
+            selected=(mut selected)
+            selectedEvent=selectedEvent
+            lastSuccessful=lastSuccessful
+            mostRecent=mostRecent
+            eventsPage=eventsPage
+            updateEvents=(action "updateEvents")
+            }}
+          {{else}}
+            {{pipeline-pr-list pullRequests=pullRequests}}
+          {{/if}}
         {{/tab.pane}}
       </div>
     {{/bs-tab}}

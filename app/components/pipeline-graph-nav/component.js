@@ -5,13 +5,23 @@ import { statusIcon } from 'screwdriver-ui/utils/build';
 
 export default Component.extend({
   session: service(),
-  eventOptions: computed('lastSuccessful', 'mostRecent', {
+  isPRGraph: computed('graphType', {
     get() {
-      return [
+      return this.get('graphType') === 'pr';
+    }
+  }),
+  eventOptions: computed('lastSuccessful', 'mostRecent', 'isPRGraph', {
+    get() {
+      const options = [
         { label: 'Most Recent', value: get(this, 'mostRecent') },
-        { label: 'Last Successful', value: get(this, 'lastSuccessful') },
-        { label: 'Aggregate', value: 'aggregate' }
+        { label: 'Last Successful', value: get(this, 'lastSuccessful') }
       ];
+
+      if (!this.get('isPRGraph')) {
+        options.push({ label: 'Aggregate', value: 'aggregate' });
+      }
+
+      return options;
     }
   }),
   icon: computed('selectedEventObj.status', {

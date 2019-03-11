@@ -156,6 +156,7 @@ export default DS.Model.extend(ModelReloaderMixin, {
 
   // Reload builds only if the event is still running
   shouldReload() {
+    console.log('shouldReload', get(this, 'isRunning'));
     return get(this, 'isRunning');
   }
 });
