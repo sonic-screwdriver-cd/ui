@@ -15,7 +15,7 @@ export default Service.extend({
     }/templates/${encodeURIComponent(name)}/${encodeURIComponent(version)}`;
 
     return this.fetchData(url).then(data => {
-      templatesFormatter(data);
+      return templatesFormatter([data]);
     });
   },
   getTemplateTags(namespace, name) {
