@@ -9,12 +9,14 @@ const { templatesFormatter } = templateHelper;
 
 export default Service.extend({
   session: service(),
-  getOneTemplate(name) {
+  getOneTemplate(name, version) {
     const url = `${ENV.APP.SDAPI_HOSTNAME}/${
       ENV.APP.SDAPI_NAMESPACE
-    }/templates/${encodeURIComponent(name)}`;
+    }/templates/${encodeURIComponent(name)}/${encodeURIComponent(version)}`;
 
-    return this.fetchData(url).then(templatesFormatter);
+    return this.fetchData(url).then(data => {
+      templatesFormatter(data);
+    });
   },
   getTemplateTags(namespace, name) {
     const fullName = `${namespace}/${name}`;
