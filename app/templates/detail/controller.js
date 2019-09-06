@@ -30,7 +30,14 @@ export default Controller.extend({
     get() {
       const version = this.selectedVersion || this.get('latest.version');
 
-      return this.templates.findBy('version', version);
+      console.log('aaaa');
+      console.log(this.get('session.data.version'));
+      const paramVersion = this.get('session.data.version');
+
+      console.log(version);
+
+      // return this.templates.findBy('version', version);
+      return this.templates.findBy('version', paramVersion);
     }
   }),
   // Set selected version to null whenever the list of templates changes
