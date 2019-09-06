@@ -33,7 +33,7 @@ module('Unit | Service | template', function(hooks) {
   test('it fetches one set of template versions', function(assert) {
     assert.expect(2);
 
-    server.get('http://localhost:8080/v4/templates/foo%2Fbar', () => [
+    server.get('http://localhost:8080/v4/templates/foo%2Fbar/1.0.0', () => [
       200,
       {
         'Content-Type': 'application/json'
@@ -48,29 +48,27 @@ module('Unit | Service | template', function(hooks) {
 
     assert.ok(service);
 
-    const t = service.getOneTemplate('foo/bar');
+    const t = service.getOneTemplate('foo/bar', '1.0.0');
 
     t.then(templates => {
       /* eslint-disable max-len */
       assert.deepEqual(templates, [
-        {
-          id: 2,
-          fullName: 'foo/bar',
-          namespace: 'foo',
-          name: 'bar',
-          version: '2.0.0',
-          createTime,
-          lastUpdated
-        },
-        {
-          id: 1,
-          fullName: 'foo/bar',
-          namespace: 'foo',
-          name: 'bar',
-          version: '1.0.0',
-          createTime,
-          lastUpdated
-        }
+        [
+          {
+            id: 2,
+            namespace: 'foo',
+            name: 'bar',
+            version: '2.0.0',
+            createTime
+          },
+          {
+            id: 1,
+            namespace: 'foo',
+            name: 'bar',
+            version: '1.0.0',
+            createTime
+          }
+        ]
       ]);
       /* eslint-enable max-len */
     });
