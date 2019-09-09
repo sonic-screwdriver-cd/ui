@@ -32,9 +32,13 @@ export default Controller.extend({
 
       const paramVersion = this.get('session.data.templateVersion');
 
+      // version指定がない場合
       if (paramVersion === 'undefined') {
         return this.templates.findBy('version', version);
       }
+      // paramVersion = this.templates.filter(t => t.tag === paramVersion);
+
+      // const url = `${ENV.APP.SDAPI_HOSTNAME}/${ENV.APP.SDAPI_NAMESPACE}/templates/`;
 
       return this.templates.findBy('version', paramVersion);
     }
