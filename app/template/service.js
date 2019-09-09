@@ -15,11 +15,9 @@ export default Service.extend({
     }/templates/${encodeURIComponent(name)}`;
     // }/templates/${encodeURIComponent(name)}/${encodeURIComponent(version)}`;
 
-    this.session.set('data.version', version);
+    this.session.set('data.templateVersion', version);
 
     return this.fetchData(url).then(data => {
-      console.log('1111');
-
       return templatesFormatter(data);
     });
   },

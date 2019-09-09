@@ -30,13 +30,12 @@ export default Controller.extend({
     get() {
       const version = this.selectedVersion || this.get('latest.version');
 
-      console.log('aaaa');
-      console.log(this.get('session.data.version'));
-      const paramVersion = this.get('session.data.version');
+      const paramVersion = this.get('session.data.templateVersion');
 
-      console.log(version);
+      if (!paramVersion) {
+        return this.templates.findBy('version', version);
+      }
 
-      // return this.templates.findBy('version', version);
       return this.templates.findBy('version', paramVersion);
     }
   }),
