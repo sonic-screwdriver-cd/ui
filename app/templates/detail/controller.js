@@ -30,15 +30,17 @@ export default Controller.extend({
     get() {
       const version = this.selectedVersion || this.get('latest.version');
 
-      const paramVersion = this.get('session.data.templateVersion');
+      let paramVersion = this.get('session.data.templateVersion');
 
-      // version指定がない場合
       if (paramVersion === 'undefined') {
         return this.templates.findBy('version', version);
       }
-      // paramVersion = this.templates.filter(t => t.tag === paramVersion);
 
-      // const url = `${ENV.APP.SDAPI_HOSTNAME}/${ENV.APP.SDAPI_NAMESPACE}/templates/`;
+      let tag = this.templates.filter(t => t.tag === paramVersion);
+
+      if (tag.length > 0) {
+        return this.templates.findBy('version', tag[0].version);
+      }
 
       return this.templates.findBy('version', paramVersion);
     }
