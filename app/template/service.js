@@ -13,7 +13,6 @@ export default Service.extend({
     const url = `${ENV.APP.SDAPI_HOSTNAME}/${
       ENV.APP.SDAPI_NAMESPACE
     }/templates/${encodeURIComponent(name)}`;
-    // }/templates/${encodeURIComponent(name)}/${encodeURIComponent(version)}`;
 
     this.session.set('data.templateVersion', version);
 
