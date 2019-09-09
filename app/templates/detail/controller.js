@@ -32,7 +32,7 @@ export default Controller.extend({
 
       const paramVersion = this.get('session.data.templateVersion');
 
-      if (!paramVersion) {
+      if (paramVersion === 'undefined') {
         return this.templates.findBy('version', version);
       }
 

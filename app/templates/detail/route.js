@@ -10,10 +10,13 @@ export default Route.extend({
       this.template.getTemplateTags(params.namespace, params.name)
     ]).then(arr => {
       let [verPayload, tagPayload] = arr;
-      const versionPayload = verPayload.filter(t => t.version === params.version);
 
-      if (versionPayload.length === 0) {
-        this.transitionTo('/404');
+      if (params.version) {
+        const versionPayload = verPayload.filter(t => t.version === params.version);
+
+        if (versionPayload.length === 0) {
+          this.transitionTo('/404');
+        }
       }
 
       verPayload = verPayload.filter(t => t.namespace === params.namespace);
