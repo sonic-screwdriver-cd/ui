@@ -30,7 +30,83 @@ export default Controller.extend({
     get() {
       const version = this.selectedVersion || this.get('latest.version');
 
-      return this.commands.findBy('version', version);
+      let paramVersion = this.get('session.data.commandVersion');
+
+      if (paramVersion === 'undefined') {
+        return this.commands.findBy('version', version);
+      }
+
+      // // tag一覧取得
+      // const tags = this.commands.map(c => {
+      //   return {
+      //     version: c.version,
+      //     tag: c.tag
+      //   };
+      // });
+
+      // console.log('tag一覧');
+      // console.log(tags);
+      // tags.forEach(t => {
+      //   console.log(t);
+      // });
+
+      // tagを分解する
+
+      // paramVersionとマッチするtag取得
+      // const result = tags.filter(t => t === para);
+
+      // マッチしたtagのバージョン取得
+
+      // commandsを取得したバージョンでフィルタ
+
+      // let tag = this.commands.filter(c => {
+      //   // c = 'hogehoge';
+      //   console.log('c dayo');
+      //   console.log(c);
+      //   console.log('commands.filter dayo');
+      //   console.log(c.tag.split(' ').some(t => t === paramVersion));
+      //   console.log('c dayo');
+      //   console.log(c);
+      //   console.log('c tag dayo');
+      //   console.log(c.tag);
+
+      //   console.log('hikaku dayo');
+      //   console.log(c.tag === paramVersion);
+      //   // return c.tag === paramVersion;
+      //   console.log('split dayo');
+      //   console.log(c.tag.split(' '));
+      //   // let tests = 'aaa bbb ccc';
+      //   let tests = c.tag;
+      //   let test = tests.split(' ')[0];
+      //   console.log('test dayo');
+      //   console.log(test);
+
+      //   let splitted = tests.split(' ');
+      //   // return c.tag.split(' ').some(t => t === paramVersion);
+      //   return splitted.some(t => t === paramVersion);
+      // });
+
+      // let tag = this.commands.filter(c => {
+      //   let { tag } = c;
+      //   let result = tag.split(' ').find(t => t === paramVersion);
+
+      //   console.log('result を表示します');
+      //   console.log(result);
+
+      //   return result;
+      // });
+
+      // console.log('コマンドの中身をみたいよ');
+      // console.log(this.commands);
+      // console.log('controllerのタグだよ、１件だといいな');
+      // console.log(tag);
+
+      // if (tag.length > 0) {
+      //   return this.commands.findBy('version', tag[0].version);
+      // }
+
+      return this.commands.findBy('version', paramVersion);
+      // return this.commands.findBy('version', version);
     }
   }),
   // Set selected version to null whenever the list of commands changes

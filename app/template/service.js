@@ -16,9 +16,7 @@ export default Service.extend({
 
     this.session.set('data.templateVersion', version);
 
-    return this.fetchData(url).then(data => {
-      return templatesFormatter(data);
-    });
+    return this.fetchData(url).then(templatesFormatter);
   },
   getTemplateTags(namespace, name) {
     const fullName = `${namespace}/${name}`;
