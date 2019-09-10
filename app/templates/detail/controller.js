@@ -36,7 +36,20 @@ export default Controller.extend({
         return this.templates.findBy('version', version);
       }
 
-      let tag = this.templates.filter(t => t.tag === paramVersion);
+      let versionAndTag = [];
+
+      this.templates.forEach(c => {
+        if (c.tag !== undefined) {
+          c.tag.split(' ').forEach(tag => {
+            versionAndTag.push({
+              version: c.version,
+              tag
+            });
+          });
+        }
+      });
+
+      let tag = versionAndTag.filter(t => t.tag === paramVersion);
 
       if (tag.length > 0) {
         return this.templates.findBy('version', tag[0].version);
