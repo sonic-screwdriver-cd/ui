@@ -56,7 +56,6 @@ export default Controller.extend({
       }
 
       return this.commands.findBy('version', paramVersion);
-      // return this.commands.findBy('version', version);
     }
   }),
   // Set selected version to null whenever the list of commands changes

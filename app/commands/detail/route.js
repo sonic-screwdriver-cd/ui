@@ -13,16 +13,8 @@ export default Route.extend({
 
       if (params.version) {
         const versionPayload = verPayload.filter(t => t.version === params.version);
-        const tag = tagPayload.filter(c => {
-          // console.log('foreatch内');
-          // console.log(c.tag);
-          // console.log(c.tag === params.version);
+        const tag = tagPayload.filter(c => c.tag === params.version);
 
-          return c.tag === params.version;
-        });
-
-        // console.log('tagPayload');
-        // console.log(tag);
         if (tag.length === 0 && versionPayload.length === 0) {
           this.transitionTo('/404');
         }
@@ -35,9 +27,6 @@ export default Route.extend({
           taggedVerObj.tag = taggedVerObj.tag ? `${taggedVerObj.tag} ${tagObj.tag}` : tagObj.tag;
         }
       });
-
-      // console.log('tagが欲しい verpayload');
-      // console.log(verPayload);
 
       return verPayload;
     });
