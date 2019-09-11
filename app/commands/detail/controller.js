@@ -32,7 +32,7 @@ export default Controller.extend({
 
       let paramVersion = this.get('session.data.commandVersion');
 
-      if (paramVersion === 'undefined') {
+      if (paramVersion === undefined) {
         return this.commands.findBy('version', version);
       }
 
@@ -49,10 +49,10 @@ export default Controller.extend({
         }
       });
 
-      let tag = versionAndTag.filter(t => t.tag === paramVersion);
+      let exsistTag = versionAndTag.filter(t => t.tag === paramVersion);
 
-      if (tag.length > 0) {
-        return this.commands.findBy('version', tag[0].version);
+      if (exsistTag.length > 0) {
+        return this.commands.findBy('version', exsistTag[0].version);
       }
 
       return this.commands.findBy('version', paramVersion);
