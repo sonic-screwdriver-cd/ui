@@ -26,7 +26,11 @@ export default Service.extend({
         fullName
       )}/tags`;
 
-    return this.fetchData(url);
+    return this.fetchData(url).then(data => {
+      this.session.set('data.templateTag', data);
+
+      return data;
+    });
   },
   getAllTemplates(namespace) {
     const url = `${ENV.APP.SDAPI_HOSTNAME}/${ENV.APP.SDAPI_NAMESPACE}/templates`;

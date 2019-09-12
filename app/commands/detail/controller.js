@@ -31,25 +31,13 @@ export default Controller.extend({
       const version = this.selectedVersion || this.get('latest.version');
 
       let paramVersion = this.get('session.data.commandVersion');
+      let commandTag = this.get('session.data.commandTag');
 
       if (paramVersion === undefined) {
         return this.commands.findBy('version', version);
       }
 
-      let versionAndTag = [];
-
-      this.commands.forEach(c => {
-        if (c.tag !== undefined) {
-          c.tag.split(' ').forEach(tag => {
-            versionAndTag.push({
-              version: c.version,
-              tag
-            });
-          });
-        }
-      });
-
-      let exsistTag = versionAndTag.filter(t => t.tag === paramVersion);
+      let exsistTag = commandTag.filter(t => t.tag === paramVersion);
 
       if (exsistTag.length > 0) {
         return this.commands.findBy('version', exsistTag[0].version);

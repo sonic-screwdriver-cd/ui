@@ -31,25 +31,13 @@ export default Controller.extend({
       const version = this.selectedVersion || this.get('latest.version');
 
       let paramVersion = this.get('session.data.templateVersion');
+      let templateTag = this.get('session.data.templateTag');
 
       if (paramVersion === 'undefined') {
         return this.templates.findBy('version', version);
       }
 
-      let versionAndTag = [];
-
-      this.templates.forEach(c => {
-        if (c.tag !== undefined) {
-          c.tag.split(' ').forEach(tag => {
-            versionAndTag.push({
-              version: c.version,
-              tag
-            });
-          });
-        }
-      });
-
-      let exsistTag = versionAndTag.filter(t => t.tag === paramVersion);
+      let exsistTag = templateTag.filter(t => t.tag === paramVersion);
 
       if (exsistTag.length > 0) {
         return this.templates.findBy('version', exsistTag[0].version);
