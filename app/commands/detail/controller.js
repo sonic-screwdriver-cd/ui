@@ -15,11 +15,11 @@ export default Controller.extend({
   },
   latest: computed('commands.[]', {
     get() {
-      return this.commands[0];
+      return this.commands.commandData[0];
     }
   }),
   trusted: computed('commands.[]', function computeTrusted() {
-    return this.commands.some(c => c.trusted);
+    return this.commands.commandData.some(c => c.trusted);
   }),
   isAdmin: computed(function isAdmin() {
     const token = this.get('session.data.authenticated.token');
@@ -30,20 +30,21 @@ export default Controller.extend({
     get() {
       const version = this.selectedVersion || this.get('latest.version');
 
-      let paramVersion = this.get('session.data.commandVersion');
-      let commandTag = this.get('session.data.commandTag');
+      let paramVersion = this.commands.param;
+
+      let tagAndVersionList = this.commands.commandTag;
 
       if (paramVersion === undefined) {
         return this.commands.findBy('version', version);
       }
 
-      let exsistTag = commandTag.filter(t => t.tag === paramVersion);
+      let exsistTag = tagAndVersionList.filter(t => t.tag === paramVersion);
 
       if (exsistTag.length > 0) {
-        return this.commands.findBy('version', exsistTag[0].version);
+        return this.commands.commandData.findBy('version', exsistTag[0].version);
       }
 
-      return this.commands.findBy('version', paramVersion);
+      return this.commands.commandData.findBy('version', paramVersion);
     }
   }),
   // Set selected version to null whenever the list of commands changes

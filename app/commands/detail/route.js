@@ -28,7 +28,13 @@ export default Route.extend({
         }
       });
 
-      return verPayload;
+      let result = {};
+
+      result.commandData = verPayload;
+      result.param = params.version;
+      result.commandTag = tagPayload;
+
+      return result;
     });
   },
   setupController(controller, model) {
