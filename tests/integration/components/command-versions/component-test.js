@@ -3,11 +3,13 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render, click } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-const COMMANDS = [
-  { version: '3.0.0', tag: 'latest stable' },
-  { version: '2.0.0', tag: 'meeseeks' },
-  { version: '1.0.0' }
-];
+const COMMANDS = {
+  commandData: [
+    { version: '3.0.0', tag: 'latest stable' },
+    { version: '2.0.0', tag: 'meeseeks' },
+    { version: '1.0.0' }
+  ]
+};
 
 module('Integration | Component | command versions', function(hooks) {
   setupRenderingTest(hooks);
@@ -21,7 +23,7 @@ module('Integration | Component | command versions', function(hooks) {
     this.set('mock', COMMANDS);
     this.actions.mockAction = function() {};
 
-    await render(hbs`{{command-versions commands=mock changeVersion=(action "mockAction")}}`);
+    await render(hbs`{{command-versions commands=mock}}`);
 
     assert.dom('h4').hasText('Versions:');
     assert.dom('ul li:first-child').hasText('3.0.0 - latest stable');
