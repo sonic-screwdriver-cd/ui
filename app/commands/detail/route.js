@@ -6,7 +6,7 @@ export default Route.extend({
   command: service(),
   model(params) {
     return RSVP.all([
-      this.command.getOneCommand(params.namespace, params.name, params.version),
+      this.command.getOneCommand(params.namespace, params.name),
       this.command.getCommandTags(params.namespace, params.name)
     ]).then(arr => {
       const [verPayload, tagPayload] = arr;

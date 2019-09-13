@@ -13,7 +13,7 @@ export default Controller.extend({
   reset() {
     this.set('errorMessage', '');
   },
-  trusted: computed('templates.[]', function computeTrusted() {
+  trusted: computed('templates.templateData.[]', function computeTrusted() {
     return this.templates.some(t => t.trusted);
   }),
   isAdmin: computed(function isAdmin() {
@@ -21,34 +21,34 @@ export default Controller.extend({
 
     return (decoder(token).scope || []).includes('admin');
   }),
-  latest: computed('templates.[]', {
+  latest: computed('templates.templateData.[]', {
     get() {
-      return this.templates[0];
+      return this.templates.templateData[0];
     }
   }),
-  versionTemplate: computed('selectedVersion', 'templates.[]', {
+  versionTemplate: computed('selectedVersion', 'templates.templateData.[]', {
     get() {
       const version = this.selectedVersion || this.get('latest.version');
 
-      let paramVersion = this.get('session.data.templateVersion');
-      let templateTag = this.get('session.data.templateTag');
+      let paramVersion = this.templates.param;
+      let tagAndVersionList = this.templates.templateTag;
 
       if (paramVersion === 'undefined') {
-        return this.templates.findBy('version', version);
+        return this.templates.templateData.findBy('version', version);
       }
 
-      let exsistTag = templateTag.filter(t => t.tag === paramVersion);
+      let exsistTag = tagAndVersionList.filter(t => t.tag === paramVersion);
 
       if (exsistTag.length > 0) {
-        return this.templates.findBy('version', exsistTag[0].version);
+        return this.templates.templateData.findBy('version', exsistTag[0].version);
       }
 
-      return this.templates.findBy('version', paramVersion);
+      return this.templates.templateData.findBy('version', paramVersion);
     }
   }),
   // Set selected version to null whenever the list of templates changes
   // eslint-disable-next-line ember/no-observers
-  modelObserver: observer('templates.[]', function modelObserver() {
+  modelObserver: observer('templates.templateData.[]', function modelObserver() {
     this.set('selectedVersion', null);
   }),
   actions: {

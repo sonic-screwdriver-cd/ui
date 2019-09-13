@@ -8,16 +8,12 @@ const { getLastUpdatedTime } = templateHelper;
 
 export default Service.extend({
   session: service(),
-  getOneCommand(namespace, name, version) {
+  getOneCommand(namespace, name) {
     const url =
       `${ENV.APP.SDAPI_HOSTNAME}/${ENV.APP.SDAPI_NAMESPACE}/commands/` +
       `${encodeURIComponent(namespace)}/${encodeURIComponent(name)}`;
 
-    this.session.set('data.commandVersion', version);
-
-    return this.fetchData(url).then(data => {
-      return data;
-    });
+    return this.fetchData(url);
   },
   getCommandTags(namespace, name) {
     const url =

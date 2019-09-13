@@ -30,7 +30,13 @@ export default Route.extend({
         }
       });
 
-      return verPayload;
+      let result = {};
+
+      result.templateData = verPayload;
+      result.param = params.version;
+      result.templateTag = tagPayload;
+
+      return result;
     });
   },
   setupController(controller, model) {
