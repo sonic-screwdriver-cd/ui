@@ -35,9 +35,9 @@ module('Unit | Route | commands/detail', function(hooks) {
     assert.ok(route);
 
     return route.model({ namespace: 'foo', name: 'bar' }).then(commands => {
-      assert.equal(commands[0].name, 'bar');
-      assert.equal(commands[0].namespace, 'foo');
-      assert.equal(commands[0].tag, 'latest');
+      assert.equal(commands.commandData[0].name, 'bar');
+      assert.equal(commands.commandData[0].namespace, 'foo');
+      assert.equal(commands.commandData[0].tag, 'latest');
     });
   });
 });

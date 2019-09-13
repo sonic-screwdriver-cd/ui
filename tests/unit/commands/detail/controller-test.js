@@ -39,14 +39,19 @@ module('Unit | Controller | commands/detail', function(hooks) {
   test('it parses model properly', function(assert) {
     let controller = this.owner.lookup('controller:commands/detail');
 
-    controller.set('model', [
-      { id: 3, version: '3.0.0', trusted: true },
-      { id: 2, version: '2.0.0' },
-      { id: 1, version: '1.0.0' }
-    ]);
+    controller.set('model', {
+      commandData: [
+        { id: 3, version: '3.0.0', trusted: true },
+        { id: 2, version: '2.0.0' },
+        { id: 1, version: '1.0.0' }
+      ],
+      commandTag: [
+        { id: 2, version: '2.0.0', tag: 'latest' },
+        { id: 1, version: '1.0.0', tag: 'stable' }
+      ]
+    });
 
     assert.ok(controller);
-
     assert.equal(controller.get('selectedVersion'), null);
     assert.equal(controller.get('latest.id'), 3);
     assert.equal(controller.get('versionCommand.id'), 3);
@@ -56,11 +61,17 @@ module('Unit | Controller | commands/detail', function(hooks) {
   test('it handles version changes', function(assert) {
     let controller = this.owner.lookup('controller:commands/detail');
 
-    controller.set('model', [
-      { id: 3, version: '3.0.0' },
-      { id: 2, version: '2.0.0' },
-      { id: 1, version: '1.0.0' }
-    ]);
+    controller.set('model', {
+      commandData: [
+        { id: 3, version: '3.0.0', trusted: true },
+        { id: 2, version: '2.0.0' },
+        { id: 1, version: '1.0.0' }
+      ],
+      commandTag: [
+        { id: 2, version: '2.0.0', tag: 'latest' },
+        { id: 1, version: '1.0.0', tag: 'stable' }
+      ]
+    });
 
     assert.ok(controller);
     assert.equal(controller.get('selectedVersion'), null);
@@ -75,11 +86,13 @@ module('Unit | Controller | commands/detail', function(hooks) {
   test('it handles model changes', function(assert) {
     let controller = this.owner.lookup('controller:commands/detail');
     // eslint-disable-next-line new-cap
-    const arr = A([
-      { id: 3, version: '3.0.0' },
-      { id: 2, version: '2.0.0' },
-      { id: 1, version: '1.0.0' }
-    ]);
+    const arr = A({
+      commandData: [
+        { id: 3, version: '3.0.0' },
+        { id: 2, version: '2.0.0' },
+        { id: 1, version: '1.0.0' }
+      ]
+    });
 
     controller.set('model', arr);
 
@@ -92,7 +105,7 @@ module('Unit | Controller | commands/detail', function(hooks) {
     assert.equal(controller.get('selectedVersion'), '1.0.0');
     assert.equal(controller.get('versionCommand.id'), 1);
 
-    arr.unshiftObject({ id: 4, version: '4.0.0' });
+    arr.commandData.unshiftObject({ id: 4, version: '4.0.0' });
     assert.equal(controller.get('selectedVersion'), null);
     assert.equal(controller.get('versionCommand.id'), 4);
     assert.equal(controller.get('latest.id'), 4);
@@ -101,11 +114,13 @@ module('Unit | Controller | commands/detail', function(hooks) {
   test('it handles command deletion', function(assert) {
     let controller = this.owner.lookup('controller:commands/detail');
     // eslint-disable-next-line new-cap
-    const arr = A([
-      { id: 3, name: 'sample', version: '3.0.0' },
-      { id: 2, name: 'sample', version: '2.0.0' },
-      { id: 1, name: 'sample', version: '1.0.0' }
-    ]);
+    const arr = A({
+      commandData: [
+        { id: 3, name: 'sample', version: '3.0.0' },
+        { id: 2, name: 'sample', version: '2.0.0' },
+        { id: 1, name: 'sample', version: '1.0.0' }
+      ]
+    });
 
     controller.set('model', arr);
 
@@ -121,11 +136,13 @@ module('Unit | Controller | commands/detail', function(hooks) {
   test('it handles command update', function(assert) {
     let controller = this.owner.lookup('controller:commands/detail');
     // eslint-disable-next-line new-cap
-    const arr = A([
-      { id: 3, name: 'sample', version: '3.0.0' },
-      { id: 2, name: 'sample', version: '2.0.0' },
-      { id: 1, name: 'sample', version: '1.0.0' }
-    ]);
+    const arr = A({
+      commandData: [
+        { id: 3, name: 'sample', version: '3.0.0' },
+        { id: 2, name: 'sample', version: '2.0.0' },
+        { id: 1, name: 'sample', version: '1.0.0' }
+      ]
+    });
 
     controller.set('model', arr);
 

@@ -13,12 +13,12 @@ export default Controller.extend({
   reset() {
     this.set('errorMessage', '');
   },
-  latest: computed('commands.[]', {
+  latest: computed('commands.commandData.[]', {
     get() {
       return this.commands.commandData[0];
     }
   }),
-  trusted: computed('commands.[]', function computeTrusted() {
+  trusted: computed('commands.commandData.[]', function computeTrusted() {
     return this.commands.commandData.some(c => c.trusted);
   }),
   isAdmin: computed(function isAdmin() {
@@ -26,7 +26,7 @@ export default Controller.extend({
 
     return (decoder(token).scope || []).includes('admin');
   }),
-  versionCommand: computed('selectedVersion', 'commands.[]', {
+  versionCommand: computed('selectedVersion', 'commands.commandData.[]', {
     get() {
       const version = this.selectedVersion || this.get('latest.version');
 
@@ -35,7 +35,7 @@ export default Controller.extend({
       let tagAndVersionList = this.commands.commandTag;
 
       if (paramVersion === undefined) {
-        return this.commands.findBy('version', version);
+        return this.commands.commandData.findBy('version', version);
       }
 
       let exsistTag = tagAndVersionList.filter(t => t.tag === paramVersion);
@@ -49,7 +49,7 @@ export default Controller.extend({
   }),
   // Set selected version to null whenever the list of commands changes
   // eslint-disable-next-line ember/no-observers
-  modelObserver: observer('commands.[]', function modelObserver() {
+  modelObserver: observer('commands.commandData.[]', function modelObserver() {
     this.set('selectedVersion', null);
   }),
   actions: {

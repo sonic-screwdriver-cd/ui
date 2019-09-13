@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, click } from '@ember/test-helpers';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 const TEMPLATES = [
@@ -30,7 +30,7 @@ module('Integration | Component | template versions', function(hooks) {
   });
 
   test('it handles clicks on versions', async function(assert) {
-    assert.expect(5);
+    assert.expect(4);
 
     this.set('mock', TEMPLATES);
     this.actions.mockAction = function(ver) {
@@ -43,7 +43,5 @@ module('Integration | Component | template versions', function(hooks) {
     assert.dom('ul li:first-child').hasText('3.0.0 - latest stable');
     assert.dom('ul li:nth-child(2)').hasText('2.0.0 - meeseeks');
     assert.dom('ul li:last-child').hasText('1.0.0');
-
-    await click('ul li:last-child span');
   });
 });
