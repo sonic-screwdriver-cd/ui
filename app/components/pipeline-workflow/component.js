@@ -60,7 +60,6 @@ export default Component.extend({
   prBuildExists: computed('tooltipData', function isStartablePrChainJob() {
     const selectedEvent = get(this, 'selectedEventObj');
 
-    console.log(selectedEvent);
     const tooltipData = get(this, 'tooltipData');
 
     let selectedJobId;
@@ -72,15 +71,9 @@ export default Component.extend({
       return false;
     }
 
-    console.log(typeof selectedJobId);
     const buildExists = selectedEvent.buildsSorted.filter(b => b.jobId === selectedJobId);
-    // console.log((selectedEvent.buildsSorted[0].jobId));
 
-    console.log(buildExists);
     const { prNum } = selectedEvent;
-
-    console.log('foo');
-    console.log(prNum && buildExists.length !== 0);
 
     return prNum && buildExists.length !== 0;
   }),
