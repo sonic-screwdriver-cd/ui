@@ -20,6 +20,7 @@ module.exports = {
   env: {
     browser: true
   },
+<<<<<<< HEAD
   globals: {
     AnsiUp: true,
     humanizeDuration: true
@@ -68,6 +69,9 @@ module.exports = {
       }
     ]
   },
+=======
+  rules: {},
+>>>>>>> 5a4bf0d (v3.16.0...v3.20.2)
   overrides: [
     // node files
     {
@@ -88,12 +92,8 @@ module.exports = {
         browser: false,
         node: true
       },
-      // plugins: ['node'],
-      // extends: ['plugin:node/recommended'],
+<<<<<<< HEAD
       rules: {
-        // this can be removed once the following is fixed
-        // https://github.com/mysticatea/eslint-plugin-node/issues/77
-        // 'node/no-unpublished-require': 'off',
         'func-names': 'off'
       }
     },
@@ -109,6 +109,14 @@ module.exports = {
       rules: {
         'func-names': 'off',
         'prefer-arrow-callback': 'off'
+=======
+      plugins: ['node'],
+      extends: ['plugin:node/recommended'],
+      rules: {
+        // this can be removed once the following is fixed
+        // https://github.com/mysticatea/eslint-plugin-node/issues/77
+        'node/no-unpublished-require': 'off'
+>>>>>>> 5a4bf0d (v3.16.0...v3.20.2)
       }
     }
   ]
