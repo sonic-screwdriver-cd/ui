@@ -66,7 +66,7 @@ export default Route.extend({
     const { job_name: jobName, status: buildStatus } = params;
 
     return getLatestBuild(
-      this.get('session'),
+      this.session,
       pipelineId,
       jobName,
       buildStatus

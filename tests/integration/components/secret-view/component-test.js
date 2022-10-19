@@ -1,7 +1,12 @@
 import EmberObject from '@ember/object';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, click, fillIn, triggerKeyEvent } from '@ember/test-helpers';
+import {
+  render,
+  click,
+  fillIn,
+  triggerKeyEvent
+} from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 module('Integration | Component | secret view', function (hooks) {
@@ -177,8 +182,8 @@ module('Integration | Component | secret view', function (hooks) {
         },
         save() {
           // update called
-          assert.equal(this.get('value'), 'banana');
-          assert.equal(this.get('allowInPR'), true);
+          assert.equal(this.value, 'banana');
+          assert.equal(this.allowInPR, true);
         }
       }).create({
         name: 'TEST_SECRET',

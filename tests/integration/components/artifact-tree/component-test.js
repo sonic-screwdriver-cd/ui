@@ -2,7 +2,13 @@ import { resolve } from 'rsvp';
 import Service from '@ember/service';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, settled, click, find, findAll } from '@ember/test-helpers';
+import {
+  render,
+  settled,
+  click,
+  find,
+  findAll
+} from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 const parsedManifest = [

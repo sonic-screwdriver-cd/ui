@@ -4,323 +4,320 @@ import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import { set } from '@ember/object';
 
-module(
-  'Integration | Component | pipeline list actions cell',
-  function (hooks) {
-    setupRenderingTest(hooks);
+module('Integration | Component | pipeline list actions cell', function (hooks) {
+  setupRenderingTest(hooks);
 
-    test('it renders', async function (assert) {
-      set(this, 'value', {
-        jobId: 1,
-        jobName: 'a',
-        latestBuild: {
-          id: 2,
-          status: 'RUNNING'
-        },
-        startSingleBuild: () => {
-          assert.ok(true);
-        },
-        stopBuild: () => {
-          assert.ok(true);
-        },
-        manualStartEnabled: true
-      });
-
-      assert.expect(4);
-
-      await render(hbs`{{pipeline-list-actions-cell
-      value=value
-    }}`);
-
-      assert.dom('.fa-play-circle-o').exists({ count: 1 });
-      assert.dom('.fa-stop-circle-o').exists({ count: 1 });
-      assert.dom('.fa-repeat').exists({ count: 1 });
-      assert.dom('.clicks-disabled').doesNotExist();
+  test('it renders', async function (assert) {
+    set(this, 'value', {
+      jobId: 1,
+      jobName: 'a',
+      latestBuild: {
+        id: 2,
+        status: 'RUNNING'
+      },
+      startSingleBuild: () => {
+        assert.ok(true);
+      },
+      stopBuild: () => {
+        assert.ok(true);
+      },
+      manualStartEnabled: true
     });
 
-    test('it renders queued build', async function (assert) {
-      set(this, 'value', {
-        jobId: 1,
-        jobName: 'a',
-        latestBuild: {
-          id: 2,
-          status: 'QUEUED'
-        },
-        startSingleBuild: () => {
-          assert.ok(true);
-        },
-        stopBuild: () => {
-          assert.ok(true);
-        },
-        manualStartEnabled: true
-      });
+    assert.expect(4);
 
-      assert.expect(4);
+    await render(hbs`{{pipeline-list-actions-cell
+    value=value
+  }}`);
 
-      await render(hbs`{{pipeline-list-actions-cell
-      value=value
-    }}`);
+    assert.dom('.fa-play-circle-o').exists({ count: 1 });
+    assert.dom('.fa-stop-circle-o').exists({ count: 1 });
+    assert.dom('.fa-repeat').exists({ count: 1 });
+    assert.dom('.clicks-disabled').doesNotExist();
+  });
 
-      assert.dom('.fa-play-circle-o').exists({ count: 1 });
-      assert.dom('.fa-stop-circle-o').exists({ count: 1 });
-      assert.dom('.fa-repeat').exists({ count: 1 });
-      assert.dom('.clicks-disabled').doesNotExist();
+  test('it renders queued build', async function (assert) {
+    set(this, 'value', {
+      jobId: 1,
+      jobName: 'a',
+      latestBuild: {
+        id: 2,
+        status: 'QUEUED'
+      },
+      startSingleBuild: () => {
+        assert.ok(true);
+      },
+      stopBuild: () => {
+        assert.ok(true);
+      },
+      manualStartEnabled: true
     });
 
-    test('it renders blocked build', async function (assert) {
-      set(this, 'value', {
-        jobId: 1,
-        jobName: 'a',
-        latestBuild: {
-          id: 2,
-          status: 'BLOCKED'
-        },
-        startSingleBuild: () => {
-          assert.ok(true);
-        },
-        stopBuild: () => {
-          assert.ok(true);
-        },
-        manualStartEnabled: true
-      });
+    assert.expect(4);
 
-      assert.expect(4);
+    await render(hbs`{{pipeline-list-actions-cell
+    value=value
+  }}`);
 
-      await render(hbs`{{pipeline-list-actions-cell
-      value=value
-    }}`);
+    assert.dom('.fa-play-circle-o').exists({ count: 1 });
+    assert.dom('.fa-stop-circle-o').exists({ count: 1 });
+    assert.dom('.fa-repeat').exists({ count: 1 });
+    assert.dom('.clicks-disabled').doesNotExist();
+  });
 
-      assert.dom('.fa-play-circle-o').exists({ count: 1 });
-      assert.dom('.fa-stop-circle-o').exists({ count: 1 });
-      assert.dom('.fa-repeat').exists({ count: 1 });
-      assert.dom('.clicks-disabled').doesNotExist();
+  test('it renders blocked build', async function (assert) {
+    set(this, 'value', {
+      jobId: 1,
+      jobName: 'a',
+      latestBuild: {
+        id: 2,
+        status: 'BLOCKED'
+      },
+      startSingleBuild: () => {
+        assert.ok(true);
+      },
+      stopBuild: () => {
+        assert.ok(true);
+      },
+      manualStartEnabled: true
     });
 
-    test('it renders frozen build', async function (assert) {
-      set(this, 'value', {
-        jobId: 1,
-        jobName: 'a',
-        latestBuild: {
-          id: 2,
-          status: 'FROZEN'
-        },
-        startSingleBuild: () => {
-          assert.ok(true);
-        },
-        stopBuild: () => {
-          assert.ok(true);
-        },
-        manualStartEnabled: true
-      });
+    assert.expect(4);
 
-      await render(hbs`{{pipeline-list-actions-cell
-      value=value
-    }}`);
+    await render(hbs`{{pipeline-list-actions-cell
+    value=value
+  }}`);
 
-      assert.expect(4);
+    assert.dom('.fa-play-circle-o').exists({ count: 1 });
+    assert.dom('.fa-stop-circle-o').exists({ count: 1 });
+    assert.dom('.fa-repeat').exists({ count: 1 });
+    assert.dom('.clicks-disabled').doesNotExist();
+  });
 
-      assert.dom('.fa-play-circle-o').exists({ count: 1 });
-      assert.dom('.fa-stop-circle-o').exists({ count: 1 });
-      assert.dom('.fa-repeat').exists({ count: 1 });
-      assert.dom('.clicks-disabled').doesNotExist();
+  test('it renders frozen build', async function (assert) {
+    set(this, 'value', {
+      jobId: 1,
+      jobName: 'a',
+      latestBuild: {
+        id: 2,
+        status: 'FROZEN'
+      },
+      startSingleBuild: () => {
+        assert.ok(true);
+      },
+      stopBuild: () => {
+        assert.ok(true);
+      },
+      manualStartEnabled: true
     });
 
-    test('it renders created build', async function (assert) {
-      set(this, 'value', {
-        jobId: 1,
-        jobName: 'a',
-        latestBuild: {
-          id: 2,
-          status: 'CREATED'
-        },
-        startSingleBuild: () => {
-          assert.ok(true);
-        },
-        stopBuild: () => {
-          assert.ok(true);
-        },
-        manualStartEnabled: true
-      });
+    await render(hbs`{{pipeline-list-actions-cell
+    value=value
+  }}`);
 
-      assert.expect(4);
+    assert.expect(4);
 
-      await render(hbs`{{pipeline-list-actions-cell
-      value=value
-    }}`);
+    assert.dom('.fa-play-circle-o').exists({ count: 1 });
+    assert.dom('.fa-stop-circle-o').exists({ count: 1 });
+    assert.dom('.fa-repeat').exists({ count: 1 });
+    assert.dom('.clicks-disabled').doesNotExist();
+  });
 
-      assert.dom('.fa-play-circle-o').exists({ count: 1 });
-      assert.dom('.fa-stop-circle-o').exists({ count: 1 });
-      assert.dom('.fa-repeat').exists({ count: 1 });
-      assert.dom('.clicks-disabled').doesNotExist();
+  test('it renders created build', async function (assert) {
+    set(this, 'value', {
+      jobId: 1,
+      jobName: 'a',
+      latestBuild: {
+        id: 2,
+        status: 'CREATED'
+      },
+      startSingleBuild: () => {
+        assert.ok(true);
+      },
+      stopBuild: () => {
+        assert.ok(true);
+      },
+      manualStartEnabled: true
     });
 
-    test('it renders with aborted build', async function (assert) {
-      set(this, 'value', {
-        jobId: 1,
-        jobName: 'a',
-        latestBuild: {
-          id: 2,
-          status: 'ABORTED'
-        },
-        startSingleBuild: () => {
-          assert.ok(true);
-        },
-        stopBuild: () => {
-          assert.ok(true);
-        },
-        manualStartEnabled: true
-      });
+    assert.expect(4);
 
-      assert.expect(4);
+    await render(hbs`{{pipeline-list-actions-cell
+    value=value
+  }}`);
 
-      await render(hbs`{{pipeline-list-actions-cell
-      value=value
-    }}`);
+    assert.dom('.fa-play-circle-o').exists({ count: 1 });
+    assert.dom('.fa-stop-circle-o').exists({ count: 1 });
+    assert.dom('.fa-repeat').exists({ count: 1 });
+    assert.dom('.clicks-disabled').doesNotExist();
+  });
 
-      assert.dom('.fa-play-circle-o').exists({ count: 1 });
-      assert.dom('.fa-stop-circle-o').exists({ count: 1 });
-      assert.dom('.fa-repeat').exists({ count: 1 });
-      assert.dom('.clicks-disabled').exists({ count: 1 });
+  test('it renders with aborted build', async function (assert) {
+    set(this, 'value', {
+      jobId: 1,
+      jobName: 'a',
+      latestBuild: {
+        id: 2,
+        status: 'ABORTED'
+      },
+      startSingleBuild: () => {
+        assert.ok(true);
+      },
+      stopBuild: () => {
+        assert.ok(true);
+      },
+      manualStartEnabled: true
     });
 
-    test('it renders with successful build', async function (assert) {
-      set(this, 'value', {
-        jobId: 1,
-        jobName: 'a',
-        latestBuild: {
-          id: 2,
-          status: 'SUCCESS'
-        },
-        startSingleBuild: () => {
-          assert.ok(true);
-        },
-        stopBuild: () => {
-          assert.ok(true);
-        },
-        manualStartEnabled: true
-      });
+    assert.expect(4);
 
-      assert.expect(4);
+    await render(hbs`{{pipeline-list-actions-cell
+    value=value
+  }}`);
 
-      await render(hbs`{{pipeline-list-actions-cell
-      value=value
-    }}`);
+    assert.dom('.fa-play-circle-o').exists({ count: 1 });
+    assert.dom('.fa-stop-circle-o').exists({ count: 1 });
+    assert.dom('.fa-repeat').exists({ count: 1 });
+    assert.dom('.clicks-disabled').exists({ count: 1 });
+  });
 
-      assert.dom('.fa-play-circle-o').exists({ count: 1 });
-      assert.dom('.fa-stop-circle-o').exists({ count: 1 });
-      assert.dom('.fa-repeat').exists({ count: 1 });
-      assert.dom('.clicks-disabled').exists({ count: 1 });
+  test('it renders with successful build', async function (assert) {
+    set(this, 'value', {
+      jobId: 1,
+      jobName: 'a',
+      latestBuild: {
+        id: 2,
+        status: 'SUCCESS'
+      },
+      startSingleBuild: () => {
+        assert.ok(true);
+      },
+      stopBuild: () => {
+        assert.ok(true);
+      },
+      manualStartEnabled: true
     });
 
-    test('it renders with annotation manualStartEnabled: false', async function (assert) {
-      set(this, 'value', {
-        jobId: 1,
-        jobName: 'a',
-        latestBuild: {
-          id: 2,
-          status: 'SUCCESS'
-        },
-        startSingleBuild: () => {
-          assert.ok(true);
-        },
-        stopBuild: () => {
-          assert.ok(true);
-        },
-        manualStartEnabled: false
-      });
+    assert.expect(4);
 
-      assert.expect(4);
+    await render(hbs`{{pipeline-list-actions-cell
+    value=value
+  }}`);
 
-      await render(hbs`{{pipeline-list-actions-cell
-      value=value
-    }}`);
+    assert.dom('.fa-play-circle-o').exists({ count: 1 });
+    assert.dom('.fa-stop-circle-o').exists({ count: 1 });
+    assert.dom('.fa-repeat').exists({ count: 1 });
+    assert.dom('.clicks-disabled').exists({ count: 1 });
+  });
 
-      assert.dom('.fa-play-circle-o').exists({ count: 1 });
-      assert.dom('.fa-stop-circle-o').exists({ count: 1 });
-      assert.dom('.fa-repeat').exists({ count: 1 });
-      assert.dom('.clicks-disabled').exists({ count: 3 });
+  test('it renders with annotation manualStartEnabled: false', async function (assert) {
+    set(this, 'value', {
+      jobId: 1,
+      jobName: 'a',
+      latestBuild: {
+        id: 2,
+        status: 'SUCCESS'
+      },
+      startSingleBuild: () => {
+        assert.ok(true);
+      },
+      stopBuild: () => {
+        assert.ok(true);
+      },
+      manualStartEnabled: false
     });
 
-    test('start build a new build', async function (assert) {
-      set(this, 'value', {
-        jobId: 1,
-        jobName: 'a',
-        latestBuild: {
-          id: 2,
-          status: 'RUNNING'
-        },
-        startSingleBuild: (jobId, jobName, status) => {
-          assert.equal(jobId, 1);
-          assert.equal(jobName, 'a');
-          assert.equal(status, 'START');
-        },
-        stopBuild: () => {
-          assert.ok(false);
-        },
-        manualStartEnabled: true
-      });
+    assert.expect(4);
 
-      assert.expect(3);
+    await render(hbs`{{pipeline-list-actions-cell
+    value=value
+  }}`);
 
-      await render(hbs`{{pipeline-list-actions-cell
-      value=value
-    }}`);
+    assert.dom('.fa-play-circle-o').exists({ count: 1 });
+    assert.dom('.fa-stop-circle-o').exists({ count: 1 });
+    assert.dom('.fa-repeat').exists({ count: 1 });
+    assert.dom('.clicks-disabled').exists({ count: 3 });
+  });
 
-      this.element.querySelectorAll('.actions span')[0].click();
+  test('start build a new build', async function (assert) {
+    set(this, 'value', {
+      jobId: 1,
+      jobName: 'a',
+      latestBuild: {
+        id: 2,
+        status: 'RUNNING'
+      },
+      startSingleBuild: (jobId, jobName, status) => {
+        assert.equal(jobId, 1);
+        assert.equal(jobName, 'a');
+        assert.equal(status, 'START');
+      },
+      stopBuild: () => {
+        assert.ok(false);
+      },
+      manualStartEnabled: true
     });
 
-    test('start build from latest build', async function (assert) {
-      set(this, 'value', {
-        jobId: 1,
-        jobName: 'a',
-        latestBuild: {
-          id: 2,
-          status: 'RUNNING'
-        },
-        startSingleBuild: (jobId, jobName, status) => {
-          assert.equal(jobId, 1);
-          assert.equal(jobName, 'a');
-          assert.equal(status, 'RESTART');
-        },
-        stopBuild: () => {
-          assert.ok(false);
-        },
-        manualStartEnabled: true
-      });
+    assert.expect(3);
 
-      assert.expect(3);
+    await render(hbs`{{pipeline-list-actions-cell
+    value=value
+  }}`);
 
-      await render(hbs`{{pipeline-list-actions-cell
-      value=value
-    }}`);
+    this.element.querySelectorAll('.actions span')[0].click();
+  });
 
-      this.element.querySelectorAll('.actions span')[2].click();
+  test('start build from latest build', async function (assert) {
+    set(this, 'value', {
+      jobId: 1,
+      jobName: 'a',
+      latestBuild: {
+        id: 2,
+        status: 'RUNNING'
+      },
+      startSingleBuild: (jobId, jobName, status) => {
+        assert.equal(jobId, 1);
+        assert.equal(jobName, 'a');
+        assert.equal(status, 'RESTART');
+      },
+      stopBuild: () => {
+        assert.ok(false);
+      },
+      manualStartEnabled: true
     });
 
-    test('stop build', async function (assert) {
-      set(this, 'value', {
-        jobId: 1,
-        jobName: 'a',
-        latestBuild: {
-          id: 2,
-          status: 'RUNNING'
-        },
-        startSingleBuild: () => {
-          assert.ok(false);
-        },
-        stopBuild: () => {
-          assert.ok(true);
-        },
-        manualStartEnabled: true
-      });
+    assert.expect(3);
 
-      assert.expect(1);
+    await render(hbs`{{pipeline-list-actions-cell
+    value=value
+  }}`);
 
-      await render(hbs`{{pipeline-list-actions-cell
-      value=value
-    }}`);
+    this.element.querySelectorAll('.actions span')[2].click();
+  });
 
-      this.element.querySelectorAll('.actions span')[1].click();
+  test('stop build', async function (assert) {
+    set(this, 'value', {
+      jobId: 1,
+      jobName: 'a',
+      latestBuild: {
+        id: 2,
+        status: 'RUNNING'
+      },
+      startSingleBuild: () => {
+        assert.ok(false);
+      },
+      stopBuild: () => {
+        assert.ok(true);
+      },
+      manualStartEnabled: true
     });
-  }
-);
+
+    assert.expect(1);
+
+    await render(hbs`{{pipeline-list-actions-cell
+    value=value
+  }}`);
+
+    this.element.querySelectorAll('.actions span')[1].click();
+  });
+});

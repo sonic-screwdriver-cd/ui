@@ -88,14 +88,14 @@ module('Unit | Controller | pipeline/build', function (hooks) {
         })
       });
 
-      assert.notOk(controller.get('isShowingModal'));
+      assert.notOk(controller.isShowingModal);
       controller.transitionToRoute = (path, id) => {
         assert.equal(path, 'pipeline.build');
         assert.equal(id, 9999);
       };
 
       controller.send('startBuild');
-      assert.ok(controller.get('isShowingModal'));
+      assert.ok(controller.isShowingModal);
     });
 
     await settled();
@@ -143,9 +143,9 @@ module('Unit | Controller | pipeline/build', function (hooks) {
         })
       });
 
-      assert.notOk(controller.get('isShowingModal'));
+      assert.notOk(controller.isShowingModal);
       controller.send('startBuild');
-      assert.ok(controller.get('isShowingModal'));
+      assert.ok(controller.isShowingModal);
     });
 
     await settled();
@@ -157,10 +157,10 @@ module('Unit | Controller | pipeline/build', function (hooks) {
       buildId: 123,
       causeMessage: 'Manually started by apple'
     });
-    assert.notOk(controller.get('isShowingModal'));
+    assert.notOk(controller.isShowingModal);
     assert.ok(invalidateStub.called);
     assert.deepEqual(
-      controller.get('errorMessage'),
+      controller.errorMessage,
       'User does not have permission'
     );
   });
@@ -203,7 +203,7 @@ module('Unit | Controller | pipeline/build', function (hooks) {
     assert.deepEqual(payload, {
       status: 'ABORTED'
     });
-    assert.deepEqual(controller.get('errorMessage'), '');
+    assert.deepEqual(controller.errorMessage, '');
   });
 
   test('it fails to stop a build', async function (assert) {
@@ -247,7 +247,7 @@ module('Unit | Controller | pipeline/build', function (hooks) {
     });
     assert.ok(invalidateStub.called);
     assert.deepEqual(
-      controller.get('errorMessage'),
+      controller.errorMessage,
       'User does not have permission'
     );
   });

@@ -14,7 +14,7 @@ export default Component.extend({
   isEmpty: empty('filteredPipelines'),
   showMore: computed('moreToShow', 'filteredPipelines', {
     get() {
-      const pipelines = get(this, 'filteredPipelines');
+      const pipelines = this.filteredPipelines;
 
       if (
         Array.isArray(pipelines) &&
@@ -23,7 +23,7 @@ export default Component.extend({
         return false;
       }
 
-      return get(this, 'moreToShow');
+      return this.moreToShow;
     }
   }),
   filteredPipelines: computed('pipelines', {
@@ -58,13 +58,13 @@ export default Component.extend({
   },
   actions: {
     moreClick() {
-      const pipelinesPage = get(this, 'pipelinesPage') + 1;
-      const fn = get(this, 'updatePipelines');
+      const pipelinesPage = this.pipelinesPage + 1;
+      const fn = this.updatePipelines;
 
       set(this, 'pipelinesPage', pipelinesPage);
 
       if (typeof fn === 'function') {
-        fn({ page: pipelinesPage, search: get(this, 'query') }).catch(error =>
+        fn({ page: pipelinesPage, search: this.query }).catch(error =>
           this.set('errorMessage', error)
         );
       }

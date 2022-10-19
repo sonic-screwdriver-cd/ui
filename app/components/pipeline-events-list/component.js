@@ -26,12 +26,12 @@ export default Component.extend({
         this.set('latestCommit', event);
       });
 
-      return get(this, 'events');
+      return this.events;
     }
   }),
   groups: computed('events.[]', {
     get() {
-      const events = get(this, 'events');
+      const events = this.events;
       const groups = groupBy(events, 'groupEventId');
       const groupsArray = Object.keys(groups).map(key => groups[key]);
 
@@ -69,7 +69,7 @@ export default Component.extend({
 
         if (this.isGroupedEvents === true) {
           currentEvent = this.groups.find(g => g.find(e => e.id === id))[0];
-          const expandedEventsGroup = get(this, 'expandedEventsGroup') || {};
+          const expandedEventsGroup = this.expandedEventsGroup || {};
 
           expandedEventsGroup[currentEvent.groupEventId] = true;
           set(this, 'expandedEventsGroup', expandedEventsGroup);

@@ -1,5 +1,10 @@
 import { Promise } from 'rsvp';
-import { set, getWithDefault, computed, observer } from '@ember/object';
+import {
+  set,
+  getWithDefault,
+  computed,
+  observer
+} from '@ember/object';
 import { scheduleOnce, later } from '@ember/runloop';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
@@ -318,8 +323,8 @@ export default Component.extend({
    */
   getLogs(fetchMax = false) {
     if (
-      !this.get('isDestroyed') &&
-      !this.get('isDestroying') &&
+      !this.isDestroyed &&
+      !this.isDestroying &&
       !this.isFetching &&
       this.shouldLoad
     ) {

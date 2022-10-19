@@ -7,7 +7,7 @@ export default Component.extend({
   classNameBindings: ['highlighted'],
   highlighted: computed('selectedEvent', 'eventId', {
     get() {
-      return get(this, 'selectedEvent') === get(this, 'eventId');
+      return this.selectedEvent === this.eventId;
     }
   }),
   didInsertElement() {
@@ -64,7 +64,7 @@ export default Component.extend({
 
   actions: {
     selectPR() {
-      set(this, 'selected', this.get('eventId'));
+      set(this, 'selected', this.eventId);
     }
   }
 });
