@@ -10,11 +10,7 @@ import ModelReloaderMixin, {
 } from 'screwdriver-ui/mixins/model-reloader';
 import { isPRJob, isActiveBuild } from 'screwdriver-ui/utils/build';
 import moment from 'moment';
-import {
-  createEvent,
-  stopBuild,
-  updateEvents
-} from '../../events/controller';
+import { createEvent, stopBuild, updateEvents } from '../../events/controller';
 
 const PAST_TIME = moment().subtract(1, 'day');
 
@@ -33,7 +29,7 @@ export default Controller.extend(ModelReloaderMixin, {
 
     let res;
 
-    const lastRefreshed = this.lastRefreshed;
+    const { lastRefreshed } = this;
     const diff = moment().diff(lastRefreshed, 'milliseconds');
 
     if (job) {
@@ -94,7 +90,7 @@ export default Controller.extend(ModelReloaderMixin, {
   paginateEvents: [],
   updateEvents,
   async getNewListViewJobs(listViewOffset, listViewCutOff) {
-    const jobIds = this.jobIds;
+    const { jobIds } = this;
 
     if (listViewOffset < jobIds.length) {
       const jobsDetails = await Promise.all(
@@ -151,7 +147,7 @@ export default Controller.extend(ModelReloaderMixin, {
 
   async updateListViewJobs() {
     // purge unmatched pipeline jobs
-    let jobsDetails = this.jobsDetails;
+    let { jobsDetails } = this;
 
     if (
       jobsDetails.some(j => j.get('jobPipelineId') !== this.get('pipeline.id'))
@@ -163,7 +159,7 @@ export default Controller.extend(ModelReloaderMixin, {
       this.set('listViewOffset', 0);
     }
 
-    const listViewOffset = this.listViewOffset;
+    const { listViewOffset } = this;
     const listViewCutOff = listViewOffset + ENV.APP.LIST_VIEW_PAGE_SIZE;
     const nextJobsDetails = await this.getNewListViewJobs(
       listViewOffset,

@@ -1,4 +1,4 @@
-import { computed, get, set, getWithDefault } from '@ember/object';
+import { computed, set, getWithDefault } from '@ember/object';
 import Component from '@ember/component';
 import { scheduleOnce } from '@ember/runloop';
 import { inject as service } from '@ember/service';
@@ -31,7 +31,7 @@ export default Component.extend({
   }),
   groups: computed('events.[]', {
     get() {
-      const events = this.events;
+      const { events } = this;
       const groups = groupBy(events, 'groupEventId');
       const groupsArray = Object.keys(groups).map(key => groups[key]);
 

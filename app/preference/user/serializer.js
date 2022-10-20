@@ -1,4 +1,6 @@
-import RESTSerializer, { EmbeddedRecordsMixin } from '@ember-data/serializer/rest';
+import RESTSerializer, {
+  EmbeddedRecordsMixin
+} from '@ember-data/serializer/rest';
 
 /**
  * extractPayload

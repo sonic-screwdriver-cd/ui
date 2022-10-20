@@ -1,18 +1,8 @@
-import {
-  resolve,
-  reject,
-  Promise as EmberPromise
-} from 'rsvp';
+import { resolve, reject, Promise as EmberPromise } from 'rsvp';
 import EmberObject from '@ember/object';
 import { module, test, todo } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import {
-  render,
-  click,
-  findAll,
-  fillIn,
-  waitFor
-} from '@ember/test-helpers';
+import { render, click, findAll, fillIn, waitFor } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import sinon from 'sinon';
 import $ from 'jquery';

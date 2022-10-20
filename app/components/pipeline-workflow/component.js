@@ -74,7 +74,7 @@ export default Component.extend({
   prBuildExists: computed('tooltipData', function isStartablePrChainJob() {
     const selectedEvent = this.selectedEventObj;
 
-    const tooltipData = this.tooltipData;
+    const { tooltipData } = this;
 
     let selectedJobId;
 

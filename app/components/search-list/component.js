@@ -1,4 +1,4 @@
-import { computed, get, set } from '@ember/object';
+import { computed, set } from '@ember/object';
 import { empty } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import ENV from 'screwdriver-ui/config/environment';

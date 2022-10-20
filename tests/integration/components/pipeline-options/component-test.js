@@ -1,9 +1,4 @@
-import {
-  click,
-  fillIn,
-  render,
-  triggerKeyEvent
-} from '@ember/test-helpers';
+import { click, fillIn, render, triggerKeyEvent } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { reject, resolve } from 'rsvp';
 

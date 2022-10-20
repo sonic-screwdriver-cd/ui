@@ -337,8 +337,8 @@ export default Component.extend({
     },
 
     startBuild(parameterizedModel) {
-      const buildState = this.buildState;
-      const job = this.job;
+      const { buildState } = this;
+      const { job } = this;
 
       this.startSingleBuild(job.id, job.name, buildState, parameterizedModel);
     }

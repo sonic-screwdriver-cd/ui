@@ -5,10 +5,7 @@ import ENV from 'screwdriver-ui/config/environment';
 import { toCustomLocaleString } from 'screwdriver-ui/utils/time-range';
 import ModelReloaderMixin from 'screwdriver-ui/mixins/model-reloader';
 import { isActiveBuild } from 'screwdriver-ui/utils/build';
-import {
-  SHOULD_RELOAD_NO,
-  SHOULD_RELOAD_YES
-} from '../mixins/model-reloader';
+import { SHOULD_RELOAD_NO, SHOULD_RELOAD_YES } from '../mixins/model-reloader';
 
 export default Model.extend(ModelReloaderMixin, {
   buildId: attr('number'),
@@ -78,7 +75,7 @@ export default Model.extend(ModelReloaderMixin, {
   }),
   duration: computed('builds.[]', 'isComplete', {
     get() {
-      const builds = this.builds;
+      const { builds } = this;
       const firstCreateTime = builds
         .map(item => get(item, 'createTime'))
         .sort()[0];
@@ -134,7 +131,7 @@ export default Model.extend(ModelReloaderMixin, {
         return;
       }
 
-      const builds = this.builds;
+      const { builds } = this;
 
       let status = 'UNKNOWN';
 
@@ -164,7 +161,7 @@ export default Model.extend(ModelReloaderMixin, {
         return;
       }
 
-      const builds = this.builds;
+      const { builds } = this;
 
       builds.then(list => {
         if (this.isDestroying || this.isDestroyed) {
@@ -203,8 +200,7 @@ export default Model.extend(ModelReloaderMixin, {
 
         // Nothing is running now, check if new builds added during reload
         // If get(this, 'numBuilds') === 0 that means it is the first load not a reload
-        const newBuilds =
-          this.numBuilds === 0 ? 0 : numBuilds - this.numBuilds;
+        const newBuilds = this.numBuilds === 0 ? 0 : numBuilds - this.numBuilds;
 
         // New builds created during reload, event is still going, reset everything
         if (newBuilds > 0) {
@@ -246,7 +242,7 @@ export default Model.extend(ModelReloaderMixin, {
         return false;
       }
       const msg = get(this, 'commit.message');
-      const numBuilds = this.numBuilds;
+      const { numBuilds } = this;
 
       if (numBuilds !== 0) {
         return false;

@@ -1,5 +1,7 @@
 import { assign } from '@ember/polyfills';
-import RESTSerializer, { EmbeddedRecordsMixin } from '@ember-data/serializer/rest';
+import RESTSerializer, {
+  EmbeddedRecordsMixin
+} from '@ember-data/serializer/rest';
 
 export default RESTSerializer.extend(EmbeddedRecordsMixin, {
   attrs: {

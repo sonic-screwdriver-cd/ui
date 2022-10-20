@@ -170,7 +170,7 @@ export default Controller.extend({
       return;
     }
 
-    const build = this.build;
+    const { build } = this;
     const pipelineId = this.get('pipeline.id');
 
     let activeStep;

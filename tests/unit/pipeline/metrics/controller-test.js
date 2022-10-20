@@ -56,32 +56,29 @@ module('Unit | Controller | pipeline/metrics', function (hooks) {
         ['queuedTime', ...metricsMock.metrics.events.queuedTime]
       ]);
       assert.equal(controller.get('eventMetrics.hide'), 'total');
-      assert.deepEqual(
-        JSON.parse(JSON.stringify(controller.eventLegend)),
-        [
-          {
-            key: 'duration',
-            name: 'Duration',
-            style: {
-              string: 'border-color:#03af7a #ff4b00 #ff4b00 #03af7a'
-            }
-          },
-          {
-            key: 'queuedTime',
-            name: 'Queued',
-            style: {
-              string: 'border-color:#c5c5c5'
-            }
-          },
-          {
-            key: 'imagePullTime',
-            name: 'Image Pull',
-            style: {
-              string: 'border-color:#dfdfdf'
-            }
+      assert.deepEqual(JSON.parse(JSON.stringify(controller.eventLegend)), [
+        {
+          key: 'duration',
+          name: 'Duration',
+          style: {
+            string: 'border-color:#03af7a #ff4b00 #ff4b00 #03af7a'
           }
-        ]
-      );
+        },
+        {
+          key: 'queuedTime',
+          name: 'Queued',
+          style: {
+            string: 'border-color:#c5c5c5'
+          }
+        },
+        {
+          key: 'imagePullTime',
+          name: 'Image Pull',
+          style: {
+            string: 'border-color:#dfdfdf'
+          }
+        }
+      ]);
       assert.deepEqual(
         controller.get('buildMetrics.json'),
         metricsMock.metrics.builds
@@ -92,35 +89,32 @@ module('Unit | Controller | pipeline/metrics', function (hooks) {
         'beta',
         'prod'
       ]);
-      assert.deepEqual(
-        JSON.parse(JSON.stringify(controller.buildLegend)),
-        [
-          {
-            key: 'main',
-            name: 'main',
-            class: { string: '' },
-            style: { string: 'border-color:#87d812' }
-          },
-          {
-            key: 'publish',
-            name: 'publish',
-            class: { string: 'unselected' },
-            style: { string: 'border-color:#fed800' }
-          },
-          {
-            key: 'beta',
-            name: 'beta',
-            class: { string: 'unselected' },
-            style: { string: 'border-color:#1ac6f4' }
-          },
-          {
-            key: 'prod',
-            name: 'prod',
-            class: { string: 'unselected' },
-            style: { string: 'border-color:#6e2ebf' }
-          }
-        ]
-      );
+      assert.deepEqual(JSON.parse(JSON.stringify(controller.buildLegend)), [
+        {
+          key: 'main',
+          name: 'main',
+          class: { string: '' },
+          style: { string: 'border-color:#87d812' }
+        },
+        {
+          key: 'publish',
+          name: 'publish',
+          class: { string: 'unselected' },
+          style: { string: 'border-color:#fed800' }
+        },
+        {
+          key: 'beta',
+          name: 'beta',
+          class: { string: 'unselected' },
+          style: { string: 'border-color:#1ac6f4' }
+        },
+        {
+          key: 'prod',
+          name: 'prod',
+          class: { string: 'unselected' },
+          style: { string: 'border-color:#6e2ebf' }
+        }
+      ]);
       assert.deepEqual(
         controller.get('stepMetrics.json'),
         metricsMock.metrics.steps.data

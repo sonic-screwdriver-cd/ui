@@ -4,10 +4,7 @@ import { alias, equal, match } from '@ember/object/computed';
 import ENV from 'screwdriver-ui/config/environment';
 import { toCustomLocaleString } from 'screwdriver-ui/utils/time-range';
 import { isActiveBuild } from 'screwdriver-ui/utils/build';
-import {
-  SHOULD_RELOAD_NO,
-  SHOULD_RELOAD_YES
-} from '../mixins/model-reloader';
+import { SHOULD_RELOAD_NO, SHOULD_RELOAD_YES } from '../mixins/model-reloader';
 
 export default Model.extend({
   pipelineId: attr('string'),

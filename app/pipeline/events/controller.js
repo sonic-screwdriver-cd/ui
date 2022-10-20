@@ -187,7 +187,7 @@ export default Controller.extend(ModelReloaderMixin, {
       const event = model.events.find(m => m.isRunning);
 
       let diff;
-      const lastRefreshed = this.lastRefreshed;
+      const { lastRefreshed } = this;
 
       if (event) {
         res = SHOULD_RELOAD_YES;

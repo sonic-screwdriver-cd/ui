@@ -110,10 +110,7 @@ module('Unit | Controller | pipeline/secrets', function (hooks) {
     });
 
     return settled().then(() => {
-      assert.equal(
-        controller.errorMessage,
-        'a series of unfortunate events'
-      );
+      assert.equal(controller.errorMessage, 'a series of unfortunate events');
     });
   });
 });

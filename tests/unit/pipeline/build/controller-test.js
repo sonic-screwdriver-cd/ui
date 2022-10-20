@@ -159,10 +159,7 @@ module('Unit | Controller | pipeline/build', function (hooks) {
     });
     assert.notOk(controller.isShowingModal);
     assert.ok(invalidateStub.called);
-    assert.deepEqual(
-      controller.errorMessage,
-      'User does not have permission'
-    );
+    assert.deepEqual(controller.errorMessage, 'User does not have permission');
   });
 
   test('it stops a build', async function (assert) {
@@ -246,10 +243,7 @@ module('Unit | Controller | pipeline/build', function (hooks) {
       status: 'ABORTED'
     });
     assert.ok(invalidateStub.called);
-    assert.deepEqual(
-      controller.errorMessage,
-      'User does not have permission'
-    );
+    assert.deepEqual(controller.errorMessage, 'User does not have permission');
   });
 
   test('it reloads a build', async function (assert) {

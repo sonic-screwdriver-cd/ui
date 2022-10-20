@@ -1,6 +1,6 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
-import { computed, set, get } from '@ember/object';
+import { computed, set } from '@ember/object';
 import { isActiveBuild } from 'screwdriver-ui/utils/build';
 export default Component.extend({
   store: service(),
