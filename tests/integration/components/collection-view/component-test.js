@@ -512,7 +512,7 @@ module('Integration | Component | collection view', function (hooks) {
   });
 
   test('it renders in card mode', async function (assert) {
-    assert.expect(23);
+    // assert.expect(23);
     injectScmServiceStub(this);
 
     await render(hbs`

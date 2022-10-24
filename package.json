@@ -75,6 +75,7 @@
     "ansi_up": "^5.1.0",
     "babel-eslint": "^10.1.0",
     "bootstrap": "^4.6.2",
+    "bootstrap-sass": "^3.4.1",
     "broccoli-asset-rev": "^2.7.0",
     "c3": "^0.7.20",
     "d3": "^5.16.0",
