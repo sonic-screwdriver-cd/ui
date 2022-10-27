@@ -30,7 +30,7 @@
           class="collection-wrapper__delete"
           onclick={{action "setCollectionToDelete" collection}}
         >
-          {{fa-icon "trash" title="Delete collection" size="md"}}
+          <FaIcon @icon="trash" @title="Delete collection" @size="md" />
         </button>
       {{/if}}
     </div>

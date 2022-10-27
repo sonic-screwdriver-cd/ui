@@ -57,7 +57,7 @@
                   </div>
                 </button>
                 {{#if isSaving}}
-                  {{fa-icon "spinner" spin=true}}
+                  <FaIcon @icon="spinner" @spin=true />
                 {{/if}}
               </div>
             </div>
@@ -82,7 +82,7 @@
                   oninput={{action (mut aliasName) value="target.value"}}
                 />
                 <button class="reset-button" {{action "resetPipelineAlias"}}>
-                  {{fa-icon "refresh"}} Reset
+                  <FaIcon @icon="refresh" /> Reset
                 </button>
                 <button
                   class="blue-button-alias"
@@ -110,7 +110,7 @@
                         @options={{sortedJobs}}
                         @renderInPlace={{true}}
                         @selected={{metricsDowntimeJobs}}
-                        placeholder="Select Jobs..."
+                        @placeholder="Select Jobs..."
                         @onChange={{action
                           (mut metricsDowntimeJobs)
                         }} as |metricsDowntimeJob|
@@ -125,7 +125,7 @@
                     href="#"
                     {{action "updateMetricsDowntimeJobs" metricsDowntimeJobs}}
                   >
-                    {{fa-icon "refresh" spin=isUpdatingMetricsDowntimeJobs}}
+                    <FaIcon @icon="refresh" @spin={{isUpdatingMetricsDowntimeJobs}} />
                   </a>
                 </div>
               </div>
@@ -169,8 +169,7 @@
                           job.isDisabled
                           "Disabled"
                           "Enabled"
-                        }} by {{job.stateChanger}}{{#if job.stateChangeMessage}}
-                          : {{job.stateChangeMessage}}
+                        }} by {{job.stateChanger}}{{#if job.stateChangeMessage}}: {{job.stateChangeMessage}}
                         {{/if}}
                       </p>
                     {{/if}}
@@ -218,7 +217,7 @@
             </div>
             <div class="col-xs-2 right">
               <a href="#" {{action "sync" "webhooks"}}>
-                {{fa-icon "refresh"}}
+                <FaIcon @icon="refresh" />
               </a>
             </div>
           </div>
@@ -235,7 +234,7 @@
             </div>
             <div class="col-xs-2 right">
               <a href="#" {{action "sync" "pullrequests"}}>
-                {{fa-icon "refresh"}}
+                <FaIcon @icon="refresh" />
               </a>
             </div>
           </div>
@@ -252,7 +251,7 @@
             </div>
             <div class="col-xs-2 right">
               <a href="#" {{action "sync"}}>
-                {{fa-icon "refresh"}}
+                <FaIcon @icon="refresh" />
               </a>
             </div>
           </div>
@@ -279,7 +278,7 @@
             </div>
             <div class="col-xs-2 right">
               <a href="#" {{action "clearCache" "pipelines"}}>
-                {{fa-icon "trash"}}
+                <FaIcon @icon="trash" />
               </a>
             </div>
           </div>
@@ -301,7 +300,7 @@
                   title="Click to clear cache for {{job.name}} job."
                 >
                   <a href="#" {{action "clearCache" "jobs" job.id}}>
-                    {{fa-icon "trash"}}
+                    <FaIcon @icon="trash" />
                   </a>
                 </div>
               </div>
@@ -325,10 +324,9 @@
                 Group Events
               </h4>
               <p>
-                Setup your pipeline preference to group events or not. {{fa-icon
-                  "question-circle"
-                  title="When grouping is enabled, events which share a common accesstor will be grouped together"
-                }}
+                Setup your pipeline preference to group events or not. <FaIcon @icon="question-circle"
+                  @title="When grouping is enabled, events which share a common accesstor will be grouped together"
+                />
               </p>
             </div>
             <div
@@ -492,14 +490,14 @@
                   class="cancel"
                   {{action "cancelPipelineVisibility"}}
                 >
-                  {{fa-icon "ban"}} Cancel
+                  <FaIcon @icon="ban" /> Cancel
                 </a>
                 <a
                   href="#"
                   class="remove"
                   {{action "updatePipelineVisibility" true}}
                 >
-                  {{fa-icon "unlock"}} Publish
+                  <FaIcon @icon="unlock" /> Publish
                 </a>
               {{/if}}
               {{#if isUpdatingPipelineVisibility}}
@@ -527,7 +525,7 @@
                     title="Delete pipeline"
                     {{action "showRemoveButtons"}}
                   >
-                    {{fa-icon "trash"}}
+                    <FaIcon @icon="trash" />
                   </a>
                 </div>
               </div>
@@ -537,10 +535,10 @@
                 Are you absolutely sure?
               </h4>
               <a href="#" class="cancel" {{action "cancelRemove"}}>
-                {{fa-icon "ban"}} Cancel
+                <FaIcon @icon="ban" /> Cancel
               </a>
               <a href="#" class="remove" {{action "removePipeline"}}>
-                {{fa-icon "trash"}} Delete
+                <FaIcon @icon="trash" /> Delete
               </a>
             {{/if}}
             {{#if isRemoving}}

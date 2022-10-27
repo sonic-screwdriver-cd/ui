@@ -27,7 +27,7 @@
   </p>
 </td>
 <td class="branch">
-  {{fa-icon "code-fork"}}
+  <FaIcon @icon="code-branch" />
   <span title={{branch}}>
     {{branch}}
   </span>
@@ -49,7 +49,7 @@
     @model={{pipeline.id}}
     @title={{pipeline.scmRepo.name}}
   >
-    {{fa-icon lastEventInfo.icon class=lastEventInfo.statusColor}}
+    <FaIcon @icon={{lastEventInfo.icon}} class={{lastEventInfo.statusColor}} />
   </LinkTo>
   {{#if storeQueryError}}
     An error occur while loading events

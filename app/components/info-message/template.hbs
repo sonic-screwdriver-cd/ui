@@ -7,7 +7,7 @@
     }}
       {{#if scmContext}}
         {{! template-lint-disable no-triple-curlies }}
-        {{fa-icon icon}}
+        <FaIcon @icon={{icon}} />
         <span>
           {{{message}}} Please login to
         </span>
@@ -16,14 +16,14 @@
           {{scmContext}}
         </a>
       {{else}}
-        {{fa-icon icon}}
+        <FaIcon @icon={{icon}} />
         <span>
           {{{message}}}
         </span>
       {{/if}}
     {{else}}
       {{! template-lint-disable no-triple-curlies }}
-      {{fa-icon icon}}
+      <FaIcon @icon={{icon}} />
       <span>
         {{{message}}}
       </span>

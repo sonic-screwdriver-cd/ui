@@ -10,7 +10,7 @@
       {{#if buttonText}}
         {{buttonText}}
       {{else}}
-        {{fa-icon "plus" title="Add to collection" size="sm"}}
+        <FaIcon @icon="plus" @title="Add to collection" @size="sm" />
       {{/if}}
     </dd.button>
   {{/if}}
@@ -24,7 +24,7 @@
     {{/each}}
     <li>
       <span class="create-dropdown" onclick={{action "openModal"}}>
-        {{fa-icon "plus-circle" title="Create" size="md"}} CREATE
+        <FaIcon @icon="plus-circle" @title="Create" @size="md" /> CREATE
       </span>
     </li>
   </dd.menu>

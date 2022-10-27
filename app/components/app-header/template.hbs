@@ -83,7 +83,7 @@
               @value={{searchTerm}}
             />
             <button class="search-button" {{action "triggerSearch"}}>
-              {{fa-icon "search" title="Search"}}
+              <FaIcon @icon="search" @title="Search" />
             </button>
           </form>
         </nav.item>
@@ -119,7 +119,7 @@
             </ddm.item>
             <ddm.item>
               <a class="release">
-                {{fa-icon "tag"}}<span>
+                <FaIcon @icon="tag" /><span>
                   {{releaseVersion}}
                 </span>
               </a>
@@ -170,7 +170,7 @@
                   <ddm.item>
                     {{#if scmContext.isSignedIn}}
                       <a class="active">
-                        {{fa-icon scmContext.iconType}} {{scmContext.displayName
+                        <FaIcon @icon={{scmContext.iconType}} @prefix="fab" /> {{scmContext.displayName
                         }}
                         <span>
                           active
@@ -181,7 +181,7 @@
                         href="#authenticate"
                         {{action "authenticate" scmContext.context}}
                       >
-                        {{fa-icon scmContext.iconType}} {{scmContext.displayName
+                        <FaIcon @icon={{scmContext.iconType}} @prefix="fab" /> {{scmContext.displayName
                         }}
                       </a>
                     {{/if}}

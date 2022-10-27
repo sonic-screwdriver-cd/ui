@@ -1,5 +1,9 @@
 <div>
-  {{fa-icon icon}}
+  <FaIcon
+    @icon={{icon}}
+    @spin={{(eq icon "spinner")}}
+    @prefix={{if (eq icon "circle") "far" "fa"}}
+  />
 </div>
 <div>
   <span class="name">

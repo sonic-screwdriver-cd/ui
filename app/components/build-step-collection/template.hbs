@@ -29,9 +29,9 @@
           </h3>
           <a class="step-toggle" onClick={{action "toggleSetup"}}>
             {{#if setupCollapsed}}
-              {{fa-icon "chevron-right"}}
+              <FaIcon @icon= "chevron-right" />
             {{else}}
-              {{fa-icon "chevron-down"}}
+              <FaIcon @icon= "chevron-down" />
             {{/if}}
             Setup
           </a>
@@ -69,9 +69,9 @@
           </div>
           <a class="step-toggle" onClick={{action "toggleTeardown"}}>
             {{#if teardownCollapsed}}
-              {{fa-icon "chevron-right"}}
+              <FaIcon @icon="chevron-right" />
             {{else}}
-              {{fa-icon "chevron-down"}}
+              <FaIcon @icon="chevron-down" />
             {{/if}}
             Teardown
           </a>

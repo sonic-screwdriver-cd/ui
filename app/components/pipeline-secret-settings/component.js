@@ -52,6 +52,8 @@ export default Component.extend({
       const { target } = event;
       const passwordInput = target.previousSibling;
 
+      console.log('push');
+
       $(target).toggleClass('fa-eye fa-eye-slash');
 
       if ($(passwordInput).attr('type') === 'password') {

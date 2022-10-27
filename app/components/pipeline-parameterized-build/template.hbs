@@ -10,9 +10,9 @@
         <h4
           onClick={{action "onExpandCollapseParamGroup" parameterGroup.jobName}}
         >
-          {{fa-icon
-            (if parameterGroup.isOpen "minus-square" "plus-square")
-          }} {{parameterGroup.paramGroupTitle}}
+          <FaIcon
+            @icon={{if parameterGroup.isOpen "minus-square" "plus-square"}}
+          /> {{parameterGroup.paramGroupTitle}}
         </h4>
         <div
           class="parameter-list
@@ -22,7 +22,7 @@
             <form.group>
               <label class="control-label col-md-4">
                 {{#if parameter.description}}
-                  {{fa-icon "question-circle" title=parameter.description}}
+                  <FaIcon @icon="question-circle" @title={{parameter.description}} />
                 {{/if}}
                 {{parameter.name}}
               </label>
@@ -39,11 +39,10 @@
                     ) as |value|
                   }}
                     {{#unless (array-includes value parameter.defaultValues)}}
-                      {{fa-icon
-                        "exclamation-triangle"
-                        title=(concat "Default value: " parameter.defaultValues)
-                        class="notice-default-values-icon"
-                      }}
+                      <FaIcon @icon="exclamation-triangle"
+                        @title={{concat "Default value: " parameter.defaultValues}}
+                        @class="notice-default-values-icon"
+                      />
                     {{/unless}}
                     <PowerSelect
                       @options={{parameter.value}}
@@ -75,11 +74,10 @@
                   {{#unless
                     (array-includes parameter.value parameter.defaultValues)
                   }}
-                    {{fa-icon
-                      "exclamation-triangle"
-                      title=(concat "Default value: " parameter.defaultValues)
+                    <FaIcon @icon="exclamation-triangle"
+                      @title={{concat "Default value: " parameter.defaultValues}}
                       class="notice-default-values-icon"
-                    }}
+                    />
                   {{/unless}}
                   <Input
                     @value={{parameter.value}}

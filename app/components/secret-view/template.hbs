@@ -7,7 +7,7 @@
     placeholder={{passwordPlaceholder}}
     @size="40"
     @value={{newValue}}
-  />{{fa-icon "eye" class="toggle-icon" click=(action "togglePasswordInput")}}
+  /><FaIcon @icon="eye" class="toggle-icon" @click={{(action "togglePasswordInput")}} />
 </td>
 <td class="allow">
   <Input @type="checkbox" @checked={{secret.allowInPR}} />
@@ -37,7 +37,7 @@
         </h4>
       </modal.header>
       <modal.body>
-        {{fa-icon "exclamation-triangle" pull="left" size=3}}
+        <FaIcon @icon="exclamation-triangle" @pull="left" @size=3 />
         You're about to delete a secret
         <strong>
           {{secret.name}}
@@ -49,7 +49,7 @@
           Cancel
         </BsButton>
         <BsButton @onClick={{action "removeSecret"}} @type="danger">
-          {{fa-icon "trash"}} Confirm
+          <FaIcon @icon="trash" /> Confirm
         </BsButton>
       </modal.footer>
     </BsModal>

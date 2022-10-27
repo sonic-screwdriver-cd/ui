@@ -8,7 +8,7 @@
       rel="noopener"
       class="link pull-right"
     >
-      {{collectionType}} Docs {{fa-icon "question-circle"}}
+      {{collectionType}} Docs <FaIcon @icon="question-circle" />
     </a>
   </h4>
   <div class="collection-description">
@@ -62,7 +62,7 @@
         {{/each}}
       </select>
       <span class="control-icon">
-        {{fa-icon "caret-down"}}
+        <FaIcon @icon="caret-down" />
       </span>
     </div>
 
@@ -84,7 +84,7 @@
         {{/each}}
       </select>
       <span class="control-icon">
-        {{fa-icon "caret-down"}}
+        <FaIcon @icon="caret-down" />
       </span>
     </div>
 
@@ -96,7 +96,7 @@
         oninput={{action (mut query) value="target.value"}}
       />
       <span class="control-icon">
-        {{fa-icon "search"}}
+        <FaIcon @icon="search" />
       </span>
     </div>
   </div>

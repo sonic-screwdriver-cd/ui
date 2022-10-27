@@ -213,7 +213,7 @@
       onClick={{action "resetZoom" eventsChartName buildsChartName}}
       title="Reset Zoom Level"
     >
-      {{fa-icon "refresh"}}
+      <FaIcon @icon="refresh" />
     </p>
   </div>
 
@@ -265,7 +265,7 @@
       onClick={{action "resetZoom" buildsChartName eventsChartName}}
       title="Reset Zoom Level"
     >
-      {{fa-icon "refresh"}}
+      <FaIcon @icon="refresh" />
     </p>
   </div>
 
@@ -288,7 +288,7 @@
             {{/each}}
           </select>
           <span class="control-icon">
-            {{fa-icon "caret-down"}}
+            <FaIcon @icon="caret-down" />
           </span>
         </div>
       </p>
@@ -335,7 +335,7 @@
         onClick={{action "resetZoom" stepsChartName}}
         title="Reset Zoom Level"
       >
-        {{fa-icon "refresh"}}
+        <FaIcon @icon="refresh" />
       </p>
     </div>
   {{else}}
@@ -355,7 +355,7 @@
           {{/each}}
         </select>
         <span class="control-icon">
-          {{fa-icon "caret-down"}}
+          <FaIcon @icon="caret-down" />
         </span>
       </div>
     </div>

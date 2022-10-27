@@ -3,10 +3,10 @@
     {{#each builds as |build|}}
       {{#if (not-eq build.status "CREATED")}}
         <LinkTo @route="pipeline.build" @model={{build.id}} @title={{build.id}}>
-          {{fa-icon "circle" fixedWidth=true class=build.status}}
+          <FaIcon @icon="circle" @fixedWidth=true class={{build.status}} />
         </LinkTo>
       {{else}}
-        {{fa-icon "circle" fixedWidth=true class=build.status}}
+        <FaIcon @icon="circle" @fixedWidth=true class={{build.status}} />
       {{/if}}
     {{/each}}
   </div>

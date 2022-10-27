@@ -13,17 +13,16 @@
   </LinkTo>
   {{#if scmUrl}}
     <a href={{scmUrl}}>
-      {{fa-icon "code-fork" title="Source code"}}
+      <FaIcon @icon="code-branch" @title="Source code" />
     </a>
   {{else}}
-    {{fa-icon
-      "code-fork"
-      title="The pipeline for this template does not exist."
-    }}
+    <FaIcon @icon="code-branch"
+      @title="The pipeline for this template does not exist."
+    />
   {{/if}}
   {{#if isAdmin}}
     <a href="#" class="remove" {{action "setTemplateToRemove" template}}>
-      {{fa-icon "trash" title="Delete template"}}
+      <FaIcon @icon="trash" @title="Delete template" />
     </a>
     <label class="trusted-toggle">
       <XToggle
@@ -37,13 +36,12 @@
   {{else}}
     {{#if scmUrl}}
       <a href="#" class="remove" {{action "setTemplateToRemove" template}}>
-        {{fa-icon "trash" title="Delete template"}}
+        <FaIcon @icon="trash" @title="Delete template" />
       </a>
     {{else}}
-      {{fa-icon
-        "trash"
-        title="Cannot delete template; pipeline could not be found."
-      }}
+      <FaIcon @icon="trash"
+        @title="Cannot delete template; pipeline could not be found."
+      />
     {{/if}}
   {{/if}}
 </h1>
@@ -131,7 +129,7 @@
         </h4>
       </modal.header>
       <modal.body>
-        {{fa-icon "exclamation-triangle" pull="left" size=3}}
+        <FaIcon @icon="exclamation-triangle" @pull="left" @size=3 />
         You're about to delete all versions and tags of
         <strong>
           {{template.fullName}}
@@ -146,7 +144,7 @@
           @onClick={{action "removeTemplate" template.fullName}}
           @type="danger"
         >
-          {{fa-icon "trash"}} Confirm
+          <FaIcon @icon="trash" /> Confirm
         </BsButton>
       </modal.footer>
     </BsModal>

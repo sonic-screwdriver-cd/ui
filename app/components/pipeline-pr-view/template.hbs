@@ -1,7 +1,7 @@
 {{#if build}}
   <div class="view">
     <div class="status">
-      {{fa-icon icon fixedWidth=true}}
+      <FaIcon @icon={{icon}} @fixedWidth=true />
     </div>
     <div class="detail">
       {{#if build.id}}

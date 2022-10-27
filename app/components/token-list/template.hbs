@@ -10,7 +10,7 @@
   <BsAlert @type="success" @onDismissed={{action "clearNewToken"}}>
     <div class="new-token">
       <p>
-        {{fa-icon "check"}} Token {{newToken.action
+        <FaIcon @icon="check" /> Token {{newToken.action
         }}. You can only see this value once, so remember to copy it!
       </p>
       <span class="new-name">

@@ -109,7 +109,7 @@
           </BsButton>
           <BsButton
             @type="primary"
-            @disabled={{isModelSaveDisabled}}
+            disabled={{isModelSaveDisabled}}
             @onClick={{action "onSubmitSettingModal"}}
           >
             Save
@@ -333,7 +333,6 @@
       <div class="collection-card-view">
         {{#each sortedPipelines as |pipeline|}}
           <PipelineCard
-            class="pipeline-card"
             @removePipeline={{action "removePipeline"}}
             @pipeline={{pipeline}}
             @isAuthenticated={{session.isAuthenticated}}

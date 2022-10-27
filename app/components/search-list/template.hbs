@@ -50,11 +50,11 @@
         </td>
         <td class="branch">
           <a href={{branch-url-encode pipeline.hubUrl}}>
-            {{fa-icon "code-fork"}}{{pipeline.branch}}
+            <FaIcon @icon="code-branch" />{{pipeline.branch}}
           </a>
         </td>
         <td class="account">
-          {{fa-icon pipeline.scmIcon}} {{pipeline.scm}}
+          <FaIcon @icon={{pipeline.scmIcon}} @prefix="fab" /> {{pipeline.scm}}
         </td>
         {{#if session.isAuthenticated}}
           <td class="add">

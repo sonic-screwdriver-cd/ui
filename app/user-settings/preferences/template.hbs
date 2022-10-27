@@ -64,7 +64,7 @@
               class="reset-button"
               {{action "resetUserSettings"}}
             >
-              {{fa-icon "refresh"}} Reset
+             <FaIcon @icon="refresh" /> Reset
             </button>
             <button
               disabled={{isDisabled}}
@@ -82,7 +82,7 @@
               {{/if}}
             </button>
             {{#if isSaving}}
-              {{fa-icon "spinner" spin=true}}
+              <FaIcon @icon="spinner" @spin=true />
             {{/if}}
           </div>
         </div>

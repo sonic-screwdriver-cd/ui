@@ -6,16 +6,14 @@
 <h3>
   Secrets
   <a href="http://docs.screwdriver.cd/user-guide/configuration/secrets">
-    {{fa-icon "question-circle" title="More information"}}
+    <FaIcon @icon="question-circle" @title="More information" />
   </a>
 </h3>
 <p>
   {{#if pipeline.configPipelineId}}
     Secrets are inherited from the
     <LinkTo @route="pipeline.secrets" @model={{pipeline.configPipelineId}}>
-      parent pipeline
-    </LinkTo>
-    . You may override a secret or revert it back to its original value.
+      parent pipeline</LinkTo>. You may override a secret or revert it back to its original value.
   {{else}}
     User secrets must also be added to the Screwdriver YAML.
   {{/if}}
@@ -62,11 +60,13 @@
             placeholder="SECRET_VALUE"
             @size="40"
             @value={{newValue}}
-          />{{fa-icon
-            "eye"
+          />
+          <FaIcon
+            @icon="eye"
             class="toggle-icon"
-            click=(action "togglePasswordInput")
-          }}
+            {{on 'click' togglePasswordInput}}
+            {{!-- @onClick={{action togglePasswordInput}} --}}
+          />
         </td>
         <td class="allow">
           <div title="Check to allow this secret to be used in pull-requests">

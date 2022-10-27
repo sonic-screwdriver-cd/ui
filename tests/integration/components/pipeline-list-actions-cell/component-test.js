@@ -32,9 +32,9 @@ module(
 value=value
 }}`);
 
-      assert.dom('.fa-play-circle-o').exists({ count: 1 });
-      assert.dom('.fa-stop-circle-o').exists({ count: 1 });
-      assert.dom('.fa-repeat').exists({ count: 1 });
+      assert.dom('.fa-play-circle').exists({ count: 1 });
+      assert.dom('.fa-stop-circle').exists({ count: 1 });
+      assert.dom('.fa-redo-alt').exists({ count: 1 });
       assert.dom('.clicks-disabled').doesNotExist();
     });
 
@@ -61,9 +61,9 @@ value=value
 value=value
 }}`);
 
-      assert.dom('.fa-play-circle-o').exists({ count: 1 });
-      assert.dom('.fa-stop-circle-o').exists({ count: 1 });
-      assert.dom('.fa-repeat').exists({ count: 1 });
+      assert.dom('.fa-play-circle').exists({ count: 1 });
+      assert.dom('.fa-stop-circle').exists({ count: 1 });
+      assert.dom('.fa-redo-alt').exists({ count: 1 });
       assert.dom('.clicks-disabled').doesNotExist();
     });
 
@@ -90,9 +90,9 @@ value=value
 value=value
 }}`);
 
-      assert.dom('.fa-play-circle-o').exists({ count: 1 });
-      assert.dom('.fa-stop-circle-o').exists({ count: 1 });
-      assert.dom('.fa-repeat').exists({ count: 1 });
+      assert.dom('.fa-play-circle').exists({ count: 1 });
+      assert.dom('.fa-stop-circle').exists({ count: 1 });
+      assert.dom('.fa-redo-alt').exists({ count: 1 });
       assert.dom('.clicks-disabled').doesNotExist();
     });
 
@@ -119,9 +119,9 @@ value=value
 
       assert.expect(4);
 
-      assert.dom('.fa-play-circle-o').exists({ count: 1 });
-      assert.dom('.fa-stop-circle-o').exists({ count: 1 });
-      assert.dom('.fa-repeat').exists({ count: 1 });
+      assert.dom('.fa-play-circle').exists({ count: 1 });
+      assert.dom('.fa-stop-circle').exists({ count: 1 });
+      assert.dom('.fa-redo-alt').exists({ count: 1 });
       assert.dom('.clicks-disabled').doesNotExist();
     });
 
@@ -148,9 +148,9 @@ value=value
 value=value
 }}`);
 
-      assert.dom('.fa-play-circle-o').exists({ count: 1 });
-      assert.dom('.fa-stop-circle-o').exists({ count: 1 });
-      assert.dom('.fa-repeat').exists({ count: 1 });
+      assert.dom('.fa-play-circle').exists({ count: 1 });
+      assert.dom('.fa-stop-circle').exists({ count: 1 });
+      assert.dom('.fa-redo-alt').exists({ count: 1 });
       assert.dom('.clicks-disabled').doesNotExist();
     });
 
@@ -177,9 +177,9 @@ value=value
 value=value
 }}`);
 
-      assert.dom('.fa-play-circle-o').exists({ count: 1 });
-      assert.dom('.fa-stop-circle-o').exists({ count: 1 });
-      assert.dom('.fa-repeat').exists({ count: 1 });
+      assert.dom('.fa-play-circle').exists({ count: 1 });
+      assert.dom('.fa-stop-circle').exists({ count: 1 });
+      assert.dom('.fa-redo-alt').exists({ count: 1 });
       assert.dom('.clicks-disabled').exists({ count: 1 });
     });
 
@@ -206,9 +206,9 @@ value=value
 value=value
 }}`);
 
-      assert.dom('.fa-play-circle-o').exists({ count: 1 });
-      assert.dom('.fa-stop-circle-o').exists({ count: 1 });
-      assert.dom('.fa-repeat').exists({ count: 1 });
+      assert.dom('.fa-play-circle').exists({ count: 1 });
+      assert.dom('.fa-stop-circle').exists({ count: 1 });
+      assert.dom('.fa-redo-alt').exists({ count: 1 });
       assert.dom('.clicks-disabled').exists({ count: 1 });
     });
 
@@ -235,9 +235,9 @@ value=value
 value=value
 }}`);
 
-      assert.dom('.fa-play-circle-o').exists({ count: 1 });
-      assert.dom('.fa-stop-circle-o').exists({ count: 1 });
-      assert.dom('.fa-repeat').exists({ count: 1 });
+      assert.dom('.fa-play-circle').exists({ count: 1 });
+      assert.dom('.fa-stop-circle').exists({ count: 1 });
+      assert.dom('.fa-redo-alt').exists({ count: 1 });
       assert.dom('.clicks-disabled').exists({ count: 3 });
     });
 

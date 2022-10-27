@@ -38,7 +38,7 @@
     />
     {{#if isValid}}
       <i class="success">
-        {{fa-icon "check"}}
+        <FaIcon @icon="check" />
       </i>
     {{/if}}
   </div>
@@ -85,7 +85,7 @@
       />
       I choose a template to automatically generate the
       <span class="select-screwdriver-yaml">
-        screwdriver.yaml {{fa-icon "question-circle"}}
+        screwdriver.yaml <FaIcon @icon="question-circle" />
       </span>
     </label>
 
@@ -94,7 +94,7 @@
         <label class="normal-weight">
           Start with a
           <span class="select-template">
-            template {{fa-icon "question-circle"}}
+            template <FaIcon @icon="question-circle" />
           </span>
         </label>
 
@@ -157,7 +157,7 @@
     </div>
   </button>
   {{#if isSaving}}
-    {{fa-icon "spinner" spin=true}}
+    <FaIcon @icon="spinner" @spin=true />
   {{/if}}
 </div>
 

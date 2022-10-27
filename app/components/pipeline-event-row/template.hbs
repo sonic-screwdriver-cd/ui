@@ -1,6 +1,12 @@
 <div class="view">
   <div class="status">
-    {{fa-icon icon fixedWidth=true}}
+    <FaIcon
+      @icon={{icon.name}}
+      @fixedWidth=true
+      @prefix={{icon.prefix}}
+      @spin={{icon.spin}}
+      @flip={{icon.flip}}
+    />
   </div>
   <div class="detail">
     <div class="commit" title={{event.causeMessage}}>

@@ -21,7 +21,7 @@
           alt="Toggle full screen logs"
           title="Toggle fullscreen"
         >
-          {{fa-icon "compress"}}
+          <FaIcon @icon="compress" />
         </a>
         <a
           onClick={{action "toggleLineWrap"}}
@@ -31,19 +31,19 @@
           {{inline-svg "word-wrap" class="img"}}
         </a>
         <a onClick={{action "scrollToTop"}} title="Go to Top">
-          {{fa-icon "arrow-up"}}
+          <FaIcon @icon="arrow-up" />
         </a>
         <a onClick={{action "scrollToBottom"}} title="Go to Bottom">
-          {{fa-icon "arrow-down"}}
+          <FaIcon @icon="arrow-down" />
         </a>
         {{#unless inProgress}}
           {{#if isDownloading}}
             <span>
-              {{fa-icon "spinner" spin=true}}Downloading
+              <FaIcon @icon="spinner" @spin=true /> Downloading
             </span>
           {{else}}
             <a onClick={{action "download"}} title="Download">
-              {{fa-icon "download"}}
+              <FaIcon @icon="download" />
             </a>
           {{/if}}
           <a id="downloadLink" href="" download="" hidden=""></a>

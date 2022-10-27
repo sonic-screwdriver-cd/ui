@@ -32,7 +32,7 @@
       {{pipeline.scmRepo.name}}
     </LinkTo>
     <div title={{branch}}>
-      {{fa-icon "code-fork"}}
+      <FaIcon @icon="code-branch" />
       {{branch}}
     </div>
   </div>
@@ -43,7 +43,7 @@
         @model={{pipeline.id}}
         @title={{pipeline.scmRepo.name}}
       >
-        {{fa-icon lastEventInfo.icon class=lastEventInfo.statusColor}}
+        <FaIcon @icon={{lastEventInfo.icon}} class={{lastEventInfo.statusColor}} />
       </LinkTo>
       <a href={{lastEventInfo.commitUrl}}>
         {{lastEventInfo.sha}}

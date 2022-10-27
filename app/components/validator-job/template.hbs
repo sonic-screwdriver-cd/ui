@@ -1,6 +1,8 @@
 {{#if collapsible}}
   <h4 class="job" {{action "nameClick"}}>
-    {{fa-icon (if isOpen "minus-square" "plus-square")}} {{name}}{{#if index}}
+    <FaIcon
+      @icon={{if isOpen "minus-square" "plus-square"}}
+    /> {{name}}{{#if index}}
       .{{index}}
     {{/if}}
   </h4>
@@ -177,7 +179,7 @@
           <div class="name">
             {{command.name}}:
             {{#if command.locked}}
-              {{fa-icon "lock"}}
+              <FaIcon @icon="lock" />
             {{/if}}
           </div>
           <div class="value">

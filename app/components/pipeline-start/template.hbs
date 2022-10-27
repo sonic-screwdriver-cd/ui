@@ -13,7 +13,7 @@
           class="btn start-with-parameters-button"
           onClick={{action "toggleModal"}}
         >
-          {{fa-icon (concat "caret-" direction)}}
+          <FaIcon @icon={{(concat "caret-" direction)}} />
         </button>
       </div>
     {{/if}}
@@ -57,7 +57,7 @@
           class="start-with-parameters-button"
           @onClick={{action "toggleDropdown" dd.toggleDropdown}}
         >
-          {{fa-icon (concat "caret-" direction)}}
+          <FaIcon @icon={{(concat "caret-" direction)}} />
         </dd.button>
       </div>
       <dd.menu class="start-with-parameters-menu">

@@ -9,10 +9,10 @@
           @onChange={{action setShowListView}} as |bg|
         >
           <bg.button @value={{false}}>
-            {{fa-icon "th"}}
+            <FaIcon @icon="th" />
           </bg.button>
           <bg.button @value={{true}}>
-            {{fa-icon "th-list"}}
+            <FaIcon @icon="th-list" />
           </bg.button>
         </BsButtonGroup>
       </div>
@@ -112,7 +112,13 @@
           </span>
           <br />
           <span class="status">
-            {{fa-icon icon fixedWidth=true}} {{selectedEventObj.status}}
+                <FaIcon
+                  @icon={{icon.name}}
+                  @fixedWidth=true
+                  @prefix={{icon.prefix}}
+                  @spin={{icon.spin}}
+                  @flip={{icon.flip}}
+                /> {{selectedEventObj.status}}
           </span>
         </div>
         <div class="col">
