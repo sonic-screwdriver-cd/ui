@@ -1,7 +1,7 @@
 import { reject } from 'rsvp';
-import { module } from 'qunit';
+import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
-import test from 'ember-sinon-qunit/test-support/test';
+import sinon from 'sinon';
 
 module('Unit | Controller | create', function (hooks) {
   setupTest(hooks);
@@ -16,7 +16,7 @@ module('Unit | Controller | create', function (hooks) {
     const controller = this.owner.lookup('controller:create');
     const done = assert.async();
     const conflictError = { status: 409, data: { existingId: 1 } };
-    const stub = this.stub(controller, 'transitionToRoute');
+    const stub = sinon.stub(controller, 'transitionToRoute');
 
     stub.callsFake(function () {
       assert.ok(stub.calledOnce, 'transitionToRoute was called once');

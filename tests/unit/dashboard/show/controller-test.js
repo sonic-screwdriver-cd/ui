@@ -2,7 +2,7 @@ import { resolve } from 'rsvp';
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 import EmberObject from '@ember/object';
-import sinonTest from 'ember-sinon-qunit/test-support/test';
+import sinon from 'sinon';
 import injectSessionStub from '../../../helpers/inject-session';
 
 module('Unit | Controller | dashboard/show', function (hooks) {
@@ -51,9 +51,9 @@ module('Unit | Controller | dashboard/show', function (hooks) {
     controller.send('removePipeline', 3);
   });
 
-  sinonTest('it calls onDeleteCollection', function (assert) {
+  test('it calls onDeleteCollection', function (assert) {
     const controller = this.owner.lookup('controller:dashboard/show');
-    const stub = this.stub(controller, 'transitionToRoute');
+    const stub = sinon.stub(controller, 'transitionToRoute');
 
     controller.send('onDeleteCollection');
 

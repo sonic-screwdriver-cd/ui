@@ -21,7 +21,7 @@ export default Route.extend({
         const tagExists = tagPayload.filter(c => c.tag === params.version);
 
         if (tagExists.length === 0 && versionExists.length === 0) {
-          this.route.transitionTo('/404');
+          this.transitionTo('/404');
         }
 
         if (versionExists.length > 0) {
@@ -61,7 +61,7 @@ export default Route.extend({
   actions: {
     error(error) {
       if (error.status === 404) {
-        this.route.transitionTo('/404');
+        this.transitionTo('/404');
       }
 
       return true;
