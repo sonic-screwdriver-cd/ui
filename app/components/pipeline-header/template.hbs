@@ -21,6 +21,7 @@
   <FaIcon @icon="code-branch" @title="Source code" /> {{pipeline.branch}}
 </a>
 <span class="scm">
+  {{!-- <FaIcon @icon={{scmContext.scmIcon}} @prefix="fab" /> {{scmContext.scm}} --}}
   <FaIcon @icon={{scmContext.scmIcon}} @prefix="fab" /> {{scmContext.scm}}
 </span>
 {{#if pipeline.configPipelineId}}

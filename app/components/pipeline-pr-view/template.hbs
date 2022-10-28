@@ -1,7 +1,13 @@
 {{#if build}}
   <div class="view">
     <div class="status">
-      <FaIcon @icon={{icon}} @fixedWidth=true />
+      <FaIcon
+        @icon={{icon.name}}
+        @fixedWidth=true
+        @prefix={{icon.prefix}}
+        @spin={{icon.spin}}
+        @flip={{icon.flip}}
+      />
     </div>
     <div class="detail">
       {{#if build.id}}

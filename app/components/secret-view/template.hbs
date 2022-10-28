@@ -3,11 +3,17 @@
 </td>
 <td class="pass">
   <Input
-    @type="password"
+    @type={{if eyeSlash "text" "password"}}
     placeholder={{passwordPlaceholder}}
     @size="40"
     @value={{newValue}}
-  /><FaIcon @icon="eye" class="toggle-icon" @click={{(action "togglePasswordInput")}} />
+  />
+  <span onclick={{action "togglePasswordInput"}}>
+    <FaIcon
+      @icon={{if eyeSlash "eye-slash" "eye"}}
+      class="toggle-icon"
+    />
+  </span>
 </td>
 <td class="allow">
   <Input @type="checkbox" @checked={{secret.allowInPR}} />
@@ -39,10 +45,7 @@
       <modal.body>
         <FaIcon @icon="exclamation-triangle" @pull="left" @size=3 />
         You're about to delete a secret
-        <strong>
-          {{secret.name}}
-        </strong>
-        . There might be existing jobs using this secret.
+        <strong>{{secret.name}}</strong>. There might be existing jobs using this secret.
       </modal.body>
       <modal.footer>
         <BsButton @onClick={{action "cancelRemovingSecret"}}>

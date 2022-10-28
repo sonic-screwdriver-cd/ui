@@ -40,14 +40,12 @@ module('Unit | Controller | dashboard/show', function (hooks) {
       }
     });
 
-    controller.set('store', {
-      findRecord(modelName, collectionId) {
-        assert.strictEqual(modelName, 'collection');
-        assert.strictEqual(collectionId, 2);
+    controller.store.findRecord = (modelName, collectionId) => {
+      assert.strictEqual(modelName, 'collection');
+      assert.strictEqual(collectionId, 2);
 
-        return resolve(mock);
-      }
-    });
+      return resolve(mock);
+    };
 
     // Remove pipeline with id 3 from collection with id 1
     controller.send('removePipeline', 3);

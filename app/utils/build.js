@@ -39,7 +39,8 @@ const statusIcon = (status, isLight) => {
       icon.name = 'exclamation-circle';
       break;
     case 'FROZEN':
-      icon.name = 'fa-snowflake-o';
+      icon.name = 'snowflake';
+      icon.prefix = 'fas';
       break;
     case 'BLOCKED':
     case 'COLLAPSED':

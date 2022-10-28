@@ -56,17 +56,17 @@
         </td>
         <td class="pass">
           <Input
-            @type="password"
+            @type={{if eyeSlash "text" "password"}}
             placeholder="SECRET_VALUE"
             @size="40"
             @value={{newValue}}
           />
-          <FaIcon
-            @icon="eye"
-            class="toggle-icon"
-            {{on 'click' togglePasswordInput}}
-            {{!-- @onClick={{action togglePasswordInput}} --}}
-          />
+          <span onclick={{action "togglePasswordInput"}}>
+            <FaIcon
+              @icon={{if eyeSlash "eye-slash" "eye"}}
+              class="toggle-icon"
+            />
+          </span>
         </td>
         <td class="allow">
           <div title="Check to allow this secret to be used in pull-requests">

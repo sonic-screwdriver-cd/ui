@@ -2,8 +2,7 @@
   <h4 class="job" {{action "nameClick"}}>
     <FaIcon
       @icon={{if isOpen "minus-square" "plus-square"}}
-    /> {{name}}{{#if index}}
-      .{{index}}
+    /> {{name}}{{#if index}}.{{index}}
     {{/if}}
   </h4>
 {{/if}}
@@ -308,8 +307,7 @@
         <li>
           <span class="name">
             <a href="/commands/{{value.command}}/{{value.version}}">
-              {{value.command}}{{#if value.version}}
-                @{{value.version}}
+              {{value.command}}{{#if value.version}}@{{value.version}}
               {{/if}}
             </a>
           </span>
