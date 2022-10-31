@@ -307,7 +307,7 @@ module('Integration | Component | build banner', function (hooks) {
 
     await click('.commit .dropdown-toggle');
 
-    assert.dom('.commit .pr-item a').hasText('1. abcdef1');
+    assert.dom('.commit .dropdown-menu a').hasText('1. abcdef1');
     assert
       .dom('.duration .banner-value')
       .hasAttribute(

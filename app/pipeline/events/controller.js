@@ -620,10 +620,13 @@ export default Controller.extend(ModelReloaderMixin, {
 
       const newEvent = this.store.createRecord('event', eventPayload);
 
+      console.log(newEvent);
+
       return newEvent
         .save()
         .then(() =>
           newEvent.get('builds').then(async () => {
+            console.log('yeah');
             if (this.refreshListViewJobs) {
               await this.refreshListViewJobs();
             }

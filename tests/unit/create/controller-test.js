@@ -24,18 +24,19 @@ module('Unit | Controller | create', function (hooks) {
       done();
     });
 
-    controller.set('store', {
-      createRecord(modelName, data) {
-        assert.equal(modelName, 'pipeline');
-        assert.equal(data.checkoutUrl, 'dummy');
-        assert.equal(data.rootDir, '');
+    const createRecordStub = sinon.stub(controller.store, 'createRecord');
+    const payload = {
+      checkoutUrl: 'dummy',
+      rootDir: '',
+      autoKeysGeneration: undefined
+    };
 
-        return {
-          save: () => reject({ errors: [conflictError] })
-        };
-      }
-    });
+    createRecordStub
+      .withArgs('pipeline', payload)
+      .returns({ save: () => reject({ errors: [conflictError] }) });
 
     controller.send('createPipeline', { scmUrl: 'dummy', rootDir: '' });
+
+    assert.ok(createRecordStub.calledWithExactly('pipeline', payload));
   });
 });

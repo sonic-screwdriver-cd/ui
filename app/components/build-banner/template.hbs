@@ -11,8 +11,8 @@
     {{else}}
       <LinkTo
         @route="pipeline.events.show"
-        @model={{pipelineId}}
-        @query={{hash}}
+        @models={{array pipelineId this.event.id}}
+        @query={{hash jobId=jobId}}
         class="banner-value"
       >
         {{jobName}}
@@ -68,14 +68,7 @@
       <summary>
         <a
           class="banner-value"
-          title="Total duration:
-            {{duration}}
-            , Blocked time:
-            {{blockDuration}}
-            , Image pull time:
-            {{imagePullDuration}}
-            , Build time:
-            {{buildDuration}}"
+          title="Total duration: {{duration}}, Blocked time: {{blockDuration}}, Image pull time: {{imagePullDuration}}, Build time: {{buildDuration}}"
         >
           {{duration}}
         </a>
@@ -172,7 +165,7 @@
     {{#if isAuthenticated}}
       <BsButton
         @onClick={{action "buildButtonClick"}}
-        @disabled={{or (await isButtonDisabled) (not isButtonDisabledLoaded)}}
+        disabled={{or (await isButtonDisabled) (not isButtonDisabledLoaded)}}
       >
         {{buildAction}}
       </BsButton>
