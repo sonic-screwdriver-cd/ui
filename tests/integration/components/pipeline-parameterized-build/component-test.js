@@ -50,7 +50,7 @@ showSubmitButton=showSubmitButton}}`);
       // Template block usage:
       await render(hbs`
 {{#pipeline-parameterized-build buildPipelineParameters=buildPipelineParameters as |parameterizedBuild| }}
-  <button class="test-button is-primary" {{action "checkParameters" parameterizedBuild.parameters}}>Test</button>
+<button class="test-button is-primary" {{action "checkParameters" parameterizedBuild.parameters}}>Test</button>
 {{/pipeline-parameterized-build}}
 `);
       await click('button.test-button');
