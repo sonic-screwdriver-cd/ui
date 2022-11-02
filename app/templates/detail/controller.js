@@ -1,9 +1,8 @@
-import { oneWay } from '@ember/object/computed';
+import { oneWay, alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import Controller from '@ember/controller';
 import { jwt_decode as decoder } from 'ember-cli-jwt-decode';
-const { alias } = computed;
 
 export default Controller.extend({
   selectedVersion: oneWay('model.versionOrTagFromUrl'),

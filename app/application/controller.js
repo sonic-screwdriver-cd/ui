@@ -1,7 +1,7 @@
-import { computed } from '@ember/object';
+// import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import Controller from '@ember/controller';
-const { alias } = computed;
+import { alias } from '@ember/object/computed';
 
 export default Controller.extend({
   showCreatePipeline: false,

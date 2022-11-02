@@ -1,4 +1,4 @@
-{{#if showModal}}
+{{#if this.showModal}}
   {{! Modal to create a collection }}
   <BsModal @onHide={{action "setModal" false}} as |modal|>
     <div class="collection-modal">
@@ -8,9 +8,9 @@
         </h4>
       </modal.header>
       <modal.body>
-        {{#if errorMessage}}
+        {{#if this.errorMessage}}
           <InfoMessage
-            @message={{errorMessage}}
+            @message={{this.errorMessage}}
             @type="warning"
             @icon="exclamation-triangle"
           />
@@ -25,9 +25,9 @@
               <RequiredFieldMarker />
             </label>
             <input
-              value={{name}}
+              value={{this.name}}
               class="form-control"
-              oninput={{action (mut name) value="target.value"}}
+              oninput={{action (mut this.name) value="target.value"}}
               type="text"
               placeholder="Name"
             />
@@ -37,9 +37,9 @@
               Description
             </label>
             <textarea
-              value={{description}}
+              value={{this.description}}
               class="form-control description-input"
-              oninput={{action (mut description) value="target.value"}}
+              oninput={{action (mut this.description) value="target.value"}}
               type="text"
               placeholder="Description for the collection"
             ></textarea>
@@ -55,7 +55,7 @@
             <BsButton
               @buttonType="submit"
               class="collection-form__create"
-              disabled={{isSaveDisabled}}
+              disabled={{this.isSaveDisabled}}
               @type="primary"
             >
               Create

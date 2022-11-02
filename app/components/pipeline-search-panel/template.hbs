@@ -6,14 +6,14 @@
       placeholder="Search Screwdriver pipelines"
       @enter={{action "searchPipelines"}}
       @autofocus="true"
-      @value={{searchTerm}}
+      @value={{this.searchTerm}}
     />
     <button class="search-pipeline-button" {{action "searchPipelines"}}>
       <FaIcon @icon="search" />
     </button>
   </div>
   <div class="searched-pipelines">
-    {{#each searchedPipelines as |pipeline|}}
+    {{#each this.searchedPipelines as |pipeline|}}
       <div class="searched-pipeline">
         <span>
           {{pipeline.name}}

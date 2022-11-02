@@ -22,11 +22,6 @@
     "start:dev": "sudo ember serve --ssl true --port 443 --environment=development",
     "test": "ember test"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.js": [
       "eslint --fix",
@@ -104,18 +99,13 @@
     "ember-data": "~4.4.1",
     "ember-export-application-global": "^2.0.1",
     "ember-flatpickr": "^2.16.4",
-    "ember-highlight": "1.2.8",
     "ember-in-viewport": "^3.10.3",
-    "ember-inline-svg": "^1.0.1",
-    "ember-light-table": "3.0.0-beta.0",
     "ember-line-clamp": "^2.3.0",
-    "ember-link-action": "^2.0.4",
     "ember-load-initializers": "^2.1.2",
     "ember-local-storage": "^1.7.2",
     "ember-modal-dialog": "^4.0.1",
     "ember-moment": "^7.8.1",
     "ember-page-title": "^7.0.0",
-    "ember-power-select": "^5.0.0",
     "ember-promise-helpers": "^1.0.9",
     "ember-qunit": "^5.1.5",
     "ember-resolver": "^8.0.3",
@@ -149,5 +139,9 @@
     "qunit-dom": "^2.0.0",
     "sass": "^1.49.9",
     "webpack": "^5.72.1"
+  },
+  "dependencies": {
+    "ember-data-codemod": "^0.1.1",
+    "ember-no-implicit-this-codemod": "https://github.com/ember-codemods/ember-no-implicit-this-codemod/archive/refs/tags/v2.1.0.tar.gz"
   }
 }
