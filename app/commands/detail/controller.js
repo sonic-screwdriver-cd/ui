@@ -7,6 +7,7 @@ import { alias } from '@ember/object/computed';
 export default Controller.extend({
   selectedVersion: null,
   errorMessage: '',
+  router: service(),
   session: service(),
   command: service(),
   commands: alias('model'),
@@ -65,7 +66,7 @@ export default Controller.extend({
   actions: {
     removeCommand(namespace, name) {
       return this.command.deleteCommands(namespace, name).then(
-        () => this.transitionToRoute('commands'),
+        () => this.router.transitionTo('commands'),
         err => this.set('errorMessage', err)
       );
     },

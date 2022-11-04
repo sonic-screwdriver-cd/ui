@@ -1009,7 +1009,7 @@ export default Controller.extend({
 
       if (id && this.selectedJobName !== name) {
         this.send('setJobId', id);
-        this.transitionToRoute({ queryParams: { jobId: id } });
+        this.router.transitionTo({ queryParams: { jobId: id } });
       } else {
         this.set('errorMessage', `Unknown Job: ${name}`);
       }

@@ -2,8 +2,10 @@ import Route from '@ember/routing/route';
 import ENV from 'screwdriver-ui/config/environment';
 import RSVP from 'rsvp';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
+import { inject as service } from '@ember/service';
 
 export default Route.extend(AuthenticatedRouteMixin, {
+  store: service(),
   queryParams: {
     query: {
       refreshModel: true,
@@ -23,7 +25,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
     if (params && params.query) {
       pipelineListConfig.search = params.query.replace(/\s/g, '');
     }
-
+    console.log("WQW");
     return RSVP.hash({
       pipelines: this.store.query('pipeline', pipelineListConfig),
       collections: this.store.findAll('collection').catch(() => []),

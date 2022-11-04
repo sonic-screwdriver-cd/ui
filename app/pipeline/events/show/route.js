@@ -6,6 +6,7 @@ import ENV from 'screwdriver-ui/config/environment';
 
 export default class PipelineEventsShowRoute extends Route {
   @service router;
+  @service store;
 
   eventId = undefined;
 

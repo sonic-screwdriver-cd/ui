@@ -18,6 +18,10 @@ export default Component.extend({
     {
       get() {
         const { jobs } = this;
+        console.log("this");
+        console.log(this);
+        console.log(this.completeWorkflowGraph);
+        console.log(this.workflowGraph);
         const graph = this.showDownstreamTriggers
           ? this.completeWorkflowGraph
           : this.workflowGraph;

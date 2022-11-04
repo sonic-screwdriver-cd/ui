@@ -15,6 +15,8 @@ import { createEvent, stopBuild, updateEvents } from '../../events/controller';
 const PAST_TIME = moment().subtract(1, 'day');
 
 export default Controller.extend(ModelReloaderMixin, {
+  store: service(),
+  router: service(),
   lastRefreshed: moment(),
   shouldReload(model) {
     const job = model.jobs.find(j => {
@@ -182,7 +184,7 @@ export default Controller.extend(ModelReloaderMixin, {
   actions: {
     setShowListView(showListView) {
       if (!showListView) {
-        this.transitionToRoute('pipeline.events');
+        this.router.transitionTo('pipeline.events');
       }
     },
     setDownstreamTrigger() {

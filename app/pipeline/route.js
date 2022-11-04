@@ -2,7 +2,7 @@ import RSVP from 'rsvp';
 import Route from '@ember/routing/route';
 import { get, set } from '@ember/object';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
-import { service } from '@ember/service';
+import { inject as service } from '@ember/service';
 
 export default Route.extend(AuthenticatedRouteMixin, {
   routeAfterAuthentication: 'pipeline',

@@ -2,8 +2,10 @@
 import { A as newArray } from '@ember/array';
 import RSVP from 'rsvp';
 import EventsRoute from '../events/route';
+import { inject as service } from '@ember/service';
 
 export default EventsRoute.extend({
+  store: service(),
   controllerName: 'pipeline.events',
   setupController(controller, model) {
     this._super(controller, model);

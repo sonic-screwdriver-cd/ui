@@ -70,7 +70,6 @@ module('Acceptance | dashboards', function (hooks) {
     await authenticateSession({ token: 'fakeToken' });
     localStorage.setItem('lastViewedCollectionId', 1);
     await visit('/');
-
     assert.equal(currentURL(), '/dashboards/1');
     assert.dom('.header__name').hasText('My Pipelines');
     assert

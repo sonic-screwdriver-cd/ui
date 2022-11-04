@@ -123,10 +123,10 @@ export async function createEvent(eventPayload, toActiveTab) {
       if (toActiveTab) {
         const path = `pipeline/${newEvent.get('pipelineId')}/${this.activeTab}`;
 
-        return this.transitionToRoute(path);
+        return this.router.transitionTo(path);
       }
 
-      return this.transitionToRoute('pipeline', newEvent.get('pipelineId'));
+      return this.router.transitionTo('pipeline', newEvent.get('pipelineId'));
     }
   } catch (e) {
     // eslint-disable-next-line no-console
@@ -177,6 +177,7 @@ export async function updateEvents(page) {
 export default Controller.extend(ModelReloaderMixin, {
   shuttle: service(),
   store: service(),
+  router: service(),
   // Update the job status
   jobService: service('job'),
   lastRefreshed: moment(),
@@ -544,7 +545,7 @@ export default Controller.extend(ModelReloaderMixin, {
     },
     setShowListView(showListView) {
       if (showListView) {
-        this.transitionToRoute('pipeline.jobs.index');
+        this.router.transitionTo('pipeline.jobs.index');
       }
     },
     async updateEvents(page) {
