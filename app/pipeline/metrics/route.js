@@ -65,7 +65,17 @@ export default Route.extend({
         // bail if the inquired job id is not of this pipeline
         this.set('jobId');
       }
-
+      console.log(this);
+      console.log(allJobs);
+      const a = this.store.query('metric', {
+        pipelineId: this.get('pipeline.id'),
+        startTime,
+        endTime
+      }).then(aa => {
+        console.log(aa);
+      }).catch(err => {
+        console.log(err);
+      })
       return RSVP.all([
         allJobs,
         fetchAll
@@ -87,6 +97,7 @@ export default Route.extend({
           : RSVP.resolve(this.jobMetrics)
       ])
         .then(([jobs, pipelineMetrics, jobMetrics]) => {
+          console.log("psps");
           // acts as cache
           this.set('pipelineMetrics', pipelineMetrics);
           this.set('jobMetrics', jobMetrics);
@@ -246,6 +257,7 @@ export default Route.extend({
           };
         })
         .catch(({ errors: [{ detail }] }) => {
+          console.log("spsp");
           // catch what's thrown by the upstream RESTAdapter
           // e.g. bad request error about 180 day max
           // error message to be shown as banner
