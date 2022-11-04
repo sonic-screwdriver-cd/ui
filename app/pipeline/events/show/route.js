@@ -33,7 +33,7 @@ export default class PipelineEventsShowRoute extends Route {
     const { pipeline_id: pipelineId } = this.paramsFor('pipeline');
 
     if (event.get('pipelineId') !== pipelineId) {
-      this.transitionTo('pipeline', pipelineId);
+      this.router.transitionTo('pipeline', pipelineId);
     }
   }
 

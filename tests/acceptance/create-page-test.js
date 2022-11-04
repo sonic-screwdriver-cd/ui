@@ -3,7 +3,8 @@ import {
   fillIn,
   currentURL,
   triggerEvent,
-  visit
+  visit,
+  waitFor
 } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
@@ -98,6 +99,7 @@ module('Acceptance | create', function (hooks) {
     await fillIn('.text-input', 'git@github.com:foo/bar.git');
     await triggerEvent('.text-input', 'keyup');
     await click('button.blue-button');
+    await waitFor('button.start-button', { timeout: Infinity });
     assert.equal(currentURL(), '/pipelines/1/events');
   });
 

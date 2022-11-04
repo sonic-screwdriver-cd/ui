@@ -176,6 +176,7 @@ export async function updateEvents(page) {
 
 export default Controller.extend(ModelReloaderMixin, {
   shuttle: service(),
+  store: service(),
   // Update the job status
   jobService: service('job'),
   lastRefreshed: moment(),
