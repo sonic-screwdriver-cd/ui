@@ -1,8 +1,8 @@
 // import Route from '@ember/routing/route';
 import { A as newArray } from '@ember/array';
 import RSVP from 'rsvp';
-import EventsRoute from '../events/route';
 import { inject as service } from '@ember/service';
+import EventsRoute from '../events/route';
 
 export default EventsRoute.extend({
   store: service(),

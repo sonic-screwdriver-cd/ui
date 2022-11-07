@@ -4,7 +4,8 @@ import { get } from '@ember/object';
 
 export default Route.extend({
   session: service(),
-  router: service(), 
+  router: service(),
+  store: service(),
   routeAfterAuthentication: 'pipeline.child-pipelines',
   titleToken: 'Child Pipelines',
   model() {

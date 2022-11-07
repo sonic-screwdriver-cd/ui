@@ -104,7 +104,7 @@
     "ember-load-initializers": "^2.1.2",
     "ember-local-storage": "~2.0.4",
     "ember-modal-dialog": "^4.0.1",
-    "ember-moment": "^7.8.1",
+    "ember-moment": "^10.0.0",
     "ember-page-title": "^7.0.0",
     "ember-promise-helpers": "~2.0.0",
     "ember-qunit": "^5.1.5",
@@ -124,6 +124,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-qunit": "^7.2.0",
+    "exists-sync": "^0.1.0",
     "humanize-duration": "^3.27.1",
     "husky": "^2.7.0",
     "jquery-highlight": "^3.5.0",
@@ -141,7 +142,6 @@
     "webpack": "^5.72.1"
   },
   "dependencies": {
-    "ember-data-codemod": "^0.1.1",
-    "ember-no-implicit-this-codemod": "https://github.com/ember-codemods/ember-no-implicit-this-codemod/archive/refs/tags/v2.1.0.tar.gz"
+    "ember-data-codemod": "^0.1.1"
   }
 }
