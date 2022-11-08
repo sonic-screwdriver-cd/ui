@@ -1,8 +1,8 @@
 <BsNavbar as |navbar|>
   <div class="navbar-header">
     {{navbar.toggle}}
-    <LinkTo @route="home" class="logo navbar-brand" @title="Screwdriver Home">
-      {{!-- {{inline-svg "Screwdriver_Logo_FullWhite" class="img"}} --}}
+    <LinkTo @route="home" class="logo navbar-brand" title="Screwdriver Home">
+      {{svg-jar "Screwdriver_Logo_FullWhite" class="img"}}
     </LinkTo>
   </div>
   <navbar.content>
@@ -24,35 +24,35 @@
           </dd.toggle>
           <dd.menu as |ddm|>
             <ddm.item>
-              <LinkTo @route="validator" @classNames="icon validator">
+              <ddm.linkTo @route="validator" class="icon validator">
                 <span>
                   Validator
                 </span>
-              </LinkTo>
+              </ddm.linkTo>
             </ddm.item>
             <ddm.item>
-              <LinkTo @route="templates" @classNames="icon templates">
+              <ddm.linkTo @route="templates" class="icon templates">
                 <span>
                   Templates
                 </span>
-              </LinkTo>
+              </ddm.linkTo>
             </ddm.item>
             <ddm.item>
-              <LinkTo @route="commands" @classNames="icon commands">
+              <ddm.linkTo @route="commands" class="icon commands">
                 <span>
                   Commands
                 </span>
-              </LinkTo>
+              </ddm.linkTo>
             </ddm.item>
             <ddm.item>
-              <LinkTo
+              <ddm.linkTo
                 @route="pipeline-visualizer"
-                @classNames="icon pipeline-visualizer"
+                class="icon pipeline-visualizer"
               >
                 <span>
                   Visualizer
                 </span>
-              </LinkTo>
+              </ddm.linkTo>
             </ddm.item>
           </dd.menu>
         </nav.dropdown>
@@ -60,7 +60,7 @@
       {{#if @session.isAuthenticated}}
         <nav.item>
           <a class="icon create" onclick={{action "openCreatePipeline"}}>
-            {{!-- {{inline-svg "add-circle" class="img"}} --}}
+            {{svg-jar "add-circle" class="img"}}
             <span>
               Create Pipeline
             </span>
@@ -98,14 +98,14 @@
               preventDefault=false
             }}
           >
-            {{!-- {{inline-svg "search" class="img"}} --}}
+            {{svg-jar "search" class="img"}}
           </a>
         </nav.item>
       {{/if}}
       <nav.item>
         <nav.dropdown as |dd|>
           <dd.toggle class="icon docs-outline">
-            {{!-- {{inline-svg "help-circle" class="img"}} --}}
+            {{svg-jar "help-circle" class="img"}}
           </dd.toggle>
           <dd.menu as |ddm|>
             <ddm.item>
@@ -114,7 +114,7 @@
                 class="icon docs"
                 title="Documentation and Contact"
               >
-                {{!-- {{inline-svg "file-text" class="img"}} --}}
+                {{svg-jar "file-text" class="img"}}
                 <span>
                   Documentation
                 </span>
@@ -131,7 +131,7 @@
             {{ddm.divider}}
             <ddm.item>
               <a href="http://blog.screwdriver.cd" class="icon blog">
-                {{!-- {{inline-svg "tumblr" class="img"}} --}}
+                {{svg-jar "tumblr" class="img"}}
                 <span>
                   Blog
                 </span>
@@ -139,7 +139,7 @@
             </ddm.item>
             <ddm.item>
               <a href={{this.slackUrl}} class="icon community">
-                {{!-- {{inline-svg "slack" class="img"}} --}}
+                {{svg-jar "slack" class="img"}}
                 <span>
                   Slack Workspace
                 </span>
@@ -147,7 +147,7 @@
             </ddm.item>
             <ddm.item>
               <a href="https://github.com/screwdriver-cd" class="icon github">
-                {{!-- {{inline-svg "github" class="img"}} --}}
+                {{svg-jar "github" class="img"}}
                 <span>
                   GitHub
                 </span>
@@ -160,7 +160,7 @@
         {{#if @session.isAuthenticated}}
           <nav.dropdown as |dd|>
             <dd.toggle class="icon profile-outline">
-              {{!-- {{inline-svg "profile-outline" class="img"}} --}}
+              {{!-- {{svg-jar "profile-outline" class="img"}} --}}
               <span class="icontitle">
                 {{@session.data.authenticated.username}}
               </span>
@@ -198,9 +198,9 @@
               {{ddm.divider}}
               {{#if (not @session.data.authenticated.isGuest)}}
                 <ddm.item>
-                  <LinkTo @route="user-settings" @title="User Settings">
+                  <ddm.linkTo @route="user-settings" @title="User Settings">
                     User Settings
-                  </LinkTo>
+                  </ddm.linkTo>
                 </ddm.item>
               {{/if}}
               <ddm.item>
@@ -219,10 +219,10 @@
           <LinkTo
             @route="login"
             @query={{hash fromUrl=@currentUrl}}
-            @title="Sign in to Screwdriver"
+            title="Sign in to Screwdriver"
             class="icon profile-outline"
           >
-            {{!-- {{inline-svg "profile-outline" class="img"}} --}}
+            {{svg-jar "profile-outline" class="img"}}
             <span class="icontitle">
               Sign in
             </span>
