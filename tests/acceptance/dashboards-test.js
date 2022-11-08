@@ -4,7 +4,8 @@ import {
   findAll,
   currentURL,
   triggerEvent,
-  visit
+  visit,
+  waitFor
 } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
@@ -70,6 +71,7 @@ module('Acceptance | dashboards', function (hooks) {
     await authenticateSession({ token: 'fakeToken' });
     localStorage.setItem('lastViewedCollectionId', 1);
     await visit('/');
+    await waitFor('h2.header__name');
     assert.equal(currentURL(), '/dashboards/1');
     assert.dom('.header__name').hasText('My Pipelines');
     assert
@@ -83,7 +85,7 @@ module('Acceptance | dashboards', function (hooks) {
     localStorage.setItem('lastViewedCollectionId', 1);
     localStorage.setItem('activeViewOptionValue', 'Card');
     await visit('/');
-
+    await waitFor('h2.header__name');
     assert.equal(currentURL(), '/dashboards/1');
     assert.dom('.header__name').hasText('My Pipelines');
     assert
@@ -153,6 +155,7 @@ module('Acceptance | dashboards', function (hooks) {
     await authenticateSession({ token: 'fakeToken' });
     localStorage.setItem('lastViewedCollectionId', 1);
     await visit('/');
+    await waitFor('h2.header__name');
     // Logged in but no collections, url should be `/`
     assert.equal(currentURL(), '/dashboards/1');
 
@@ -163,10 +166,10 @@ module('Acceptance | dashboards', function (hooks) {
 
     await click('.header__create');
     assert.dom('.modal').exists({ count: 1 });
-    await fillIn('.name input', 'collection2');
-    await triggerEvent('.name input', 'keyup');
-    await fillIn('.description textarea', 'description2');
-    await triggerEvent('.description textarea', 'keyup');
+    await fillIn('.name-input', 'collection2');
+    await triggerEvent('.name-input', 'keyup');
+    await fillIn('.description-input', 'description2');
+    await triggerEvent('.description-input', 'keyup');
     await click('.collection-form__create');
     // The modal should disappear
     assert.notOk(findAll('.modal').length);

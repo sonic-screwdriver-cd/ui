@@ -19,32 +19,39 @@
           class="collection-form"
           @onSubmit={{action "addNewCollection"}} as |form|
         >
-          <form.group class="name">
-            <label class="control-label">
-              Collection Name
-              <RequiredFieldMarker />
-            </label>
-            <input
-              value={{this.name}}
-              class="form-control"
-              oninput={{action (mut this.name) value="target.value"}}
-              type="text"
-              placeholder="Name"
-            />
-          </form.group>
-          <form.group class="description">
-            <label class="control-label">
-              Description
-            </label>
-            <textarea
-              value={{this.description}}
-              class="form-control description-input"
-              oninput={{action (mut this.description) value="target.value"}}
-              type="text"
-              placeholder="Description for the collection"
-            ></textarea>
-          </form.group>
-          <form.group class="footer buttons-float-right">
+          <form.element
+            @controlType="Textarea"
+            @label="Collection Name"
+            @value={{this.name}}
+            @onChange={{action (mut this.name) value="target.value"}}
+            class="control-label" as |el|
+          >
+            <el.control placeholder="Name" class="name-input form-control" required />
+          </form.element>
+          <form.element
+            @controlType="Textarea"
+            @label="Description"
+            @value={{this.description}}
+            @onChange={{action (mut this.description) value="target.value"}}
+            class="control-label" as |el|
+          >
+            <el.control placeholder="Description for the collection" class="form-control description-input" />
+          </form.element>
+          <BsButton
+            class="collection-form__cancel"
+            @onClick={{action modal.close}}
+            @type="default"
+          >
+            Cancel
+          </BsButton>
+          <form.submitButton
+            class="collection-form__create"
+            disabled={{this.isSaveDisabled}}
+            @type="primary"
+          >
+            Create
+          </form.submitButton>
+          {{!-- <form.group class="footer buttons-float-right">
             <BsButton
               class="collection-form__cancel"
               @onClick={{action modal.close}}
@@ -60,7 +67,7 @@
             >
               Create
             </BsButton>
-          </form.group>
+          </form.group> --}}
         </BsForm>
       </modal.body>
     </div>
