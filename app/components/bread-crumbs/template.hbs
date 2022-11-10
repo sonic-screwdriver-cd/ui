@@ -1,7 +1,7 @@
 <div>
   {{#each this.crumbs as |crumb index|}}
     {{#if (eq index 0)}}
-      <LinkTo params="crumb.param">
+      <LinkTo @route="home" params="crumb.param">
         {{crumb.name}}
       </LinkTo>
     {{else}}
@@ -9,7 +9,7 @@
         / {{crumb.name}}
       {{else}}
         /
-        <LinkTo params="crumb.params">
+        <LinkTo @route="home" params="crumb.params">
           {{crumb.name}}
         </LinkTo>
       {{/if}}
