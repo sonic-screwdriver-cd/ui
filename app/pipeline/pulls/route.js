@@ -14,9 +14,6 @@ export default EventsRoute.extend({
       selected: null
     });
   },
-  renderTemplate() {
-    this.render('pipeline.events');
-  },
   model() {
     const pipelineEventsController = this.controllerFor('pipeline.events');
 

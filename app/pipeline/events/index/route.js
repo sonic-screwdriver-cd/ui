@@ -10,7 +10,6 @@ export default class PipelineEventsIndexRoute extends Route {
         ? 0
         : get(model, 'events.firstObject.id');
     const { pipeline_id: pipelineId } = this.paramsFor('pipeline');
-
     if (eventId) {
       this.router.transitionTo('pipeline.events.show', pipelineId, eventId);
     }
