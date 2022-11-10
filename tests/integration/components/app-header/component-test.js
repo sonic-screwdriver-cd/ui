@@ -52,7 +52,7 @@ module('Integration | Component | app header', function (hooks) {
     });
 
     await render(
-      hbs`<AppHeader @session={{this.sessionMock}} onInvalidate={{action "invalidateSession"}} />`
+      hbs`<AppHeader @session={{this.sessionMock}} @onInvalidate={{action this.invalidateSession}} />`
     );
     assert.dom('.profile-outline > .icontitle').hasText('foofoo');
     assert.dom('.icon.create').exists({ count: 1 });
@@ -71,7 +71,7 @@ module('Integration | Component | app header', function (hooks) {
     });
 
     await render(
-      hbs`<AppHeader @session={{this.sessionMock}} onInvalidate={{action "invalidateSession"}} />`
+      hbs`<AppHeader @session={{this.sessionMock}} @onInvalidate={{action this.invalidateSession}} />`
     );
     await click('.icon.profile-outline');
 
@@ -116,7 +116,7 @@ module('Integration | Component | app header', function (hooks) {
     });
 
     await render(
-      hbs`<AppHeader @showSearch=true @searchPipelines={{action "search"}} />`
+      hbs`<AppHeader @showSearch=true @searchPipelines={{action this.search}} />`
     );
 
     assert.dom('.search-input').hasNoValue();
