@@ -23,7 +23,7 @@
             @controlType="Textarea"
             @label="Collection Name"
             @value={{this.name}}
-            @onChange={{action (mut this.name) value="target.value"}}
+            @onChange={{action (mut this.name)}}
             class="control-label" as |el|
           >
             <el.control placeholder="Name" class="name-input form-control" required />
@@ -32,7 +32,7 @@
             @controlType="Textarea"
             @label="Description"
             @value={{this.description}}
-            @onChange={{action (mut this.description) value="target.value"}}
+            @onChange={{action (mut this.description)}}
             class="control-label" as |el|
           >
             <el.control placeholder="Description for the collection" class="form-control description-input" />
@@ -51,23 +51,6 @@
           >
             Create
           </form.submitButton>
-          {{!-- <form.group class="footer buttons-float-right">
-            <BsButton
-              class="collection-form__cancel"
-              @onClick={{action modal.close}}
-              @type="default"
-            >
-              Cancel
-            </BsButton>
-            <BsButton
-              @buttonType="submit"
-              class="collection-form__create"
-              disabled={{this.isSaveDisabled}}
-              @type="primary"
-            >
-              Create
-            </BsButton>
-          </form.group> --}}
         </BsForm>
       </modal.body>
     </div>

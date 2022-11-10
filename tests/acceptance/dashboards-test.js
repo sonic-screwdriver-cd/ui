@@ -5,7 +5,8 @@ import {
   currentURL,
   triggerEvent,
   visit,
-  waitFor
+  waitFor,
+  waitUntil
 } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
@@ -161,8 +162,8 @@ module('Acceptance | dashboards', function (hooks) {
 
     await visit('/search');
     assert.dom('.flyout').exists({ count: 1 });
-    assert.notOk(findAll('.modal').length);
-    assert.notOk(findAll('.collection-wrapper row').length);
+    assert.strictEqual(findAll('.modal').length, 0);
+    assert.strictEqual(findAll('.collection-wrapper row').length, 0);
 
     await click('.header__create');
     assert.dom('.modal').exists({ count: 1 });
@@ -172,6 +173,7 @@ module('Acceptance | dashboards', function (hooks) {
     await triggerEvent('.description-input', 'keyup');
     await click('.collection-form__create');
     // The modal should disappear
-    assert.notOk(findAll('.modal').length);
+    await waitUntil(() => findAll('.modal').length === 0);
+    assert.strictEqual(findAll('.modal').length, 0);
   });
 });
