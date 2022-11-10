@@ -20,7 +20,6 @@ module('Integration | Component | app header', function (hooks) {
     assert.dom('.icon.create').doesNotExist();
 
     await click('.icon.tools');
-    await this.pauseTest()
     assert.dom('.icon.validator').exists({ count: 1 });
     assert.dom('.icon.templates').exists({ count: 1 });
     assert.dom('.icon.commands').exists({ count: 1 });

@@ -43,36 +43,11 @@ export default class PipelineEventsShowRoute extends Route {
 
     const { event_id: eventId } = this.paramsFor(this.routeName);
     const pipelineEventsController = this.controllerFor('pipeline.events');
-    const desiredEvent = pipelineEventsController.events.findBy('id', eventId);
-
-    if (!desiredEvent) {
-      const event = await this.store.findRecord('event', eventId);
-
-      pipelineEventsController.paginateEvents.pushObject(event);
-    } else {
-      const isGroupedEvents =
-        get(pipelineEventsController, 'pipeline.settings.groupedEvents') ===
-        undefined
-          ? true
-          : get(pipelineEventsController, 'pipeline.settings.groupedEvents');
-
-      if (isGroupedEvents === true) {
-        const { groupEventId } = desiredEvent;
-
-        const expandedEventsGroup =
-          pipelineEventsController.expandedEventsGroup || {};
-
-        if (expandedEventsGroup[groupEventId] === undefined) {
-          expandedEventsGroup[groupEventId] = true;
-        }
-        pipelineEventsController.set(
-          'expandedEventsGroup',
-          expandedEventsGroup
-        );
-      }
-    }
 
     pipelineEventsController.set('selected', eventId);
+
+    const event = await this.store.findRecord('event', eventId);
+    pipelineEventsController.paginateEvents.pushObject(event);
 
     if (eventId !== this.eventId) {
       this.eventId = eventId;
