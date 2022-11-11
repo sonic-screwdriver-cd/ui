@@ -338,16 +338,16 @@ module('Integration | Component | build banner', function (hooks) {
     await render(hbs`<BuildBanner
       @buildContainer="node:6"
       @duration="5 seconds"
-      buildStatus="ABORTED"
-      buildStart="2016-11-04T20:09:41.238Z"
-      buildSteps=buildStepsMock
-      jobName="PR-671"
-      jobDisabled=jobDisabled
-      isAuthenticated=true
-      event=eventMock
-      prEvents=prEvents
-      onStart=(action externalStart)
-      reloadBuild=(action reloadCb)
+      @buildStatus="ABORTED"
+      @buildStart="2016-11-04T20:09:41.238Z"
+      @buildSteps={{this.buildStepsMock}}
+      @jobName="PR-671"
+      @jobDisabled={{this.jobDisabled}}
+      @isAuthenticated={{true}}
+      @event={{this.eventMock}}
+      @prEvents={{this.prEvents}}
+      @onStart={{action this.externalStart}}
+      @reloadBuild={{action this.reloadCb}}
     />`);
 
     assert.dom('button').hasText('Restart');
@@ -374,16 +374,16 @@ module('Integration | Component | build banner', function (hooks) {
     await render(hbs`<BuildBanner
       @buildContainer="node:6"
       @duration="5 seconds"
-      buildStatus="ABORTED"
-      buildStart="2016-11-04T20:09:41.238Z"
-      buildSteps=buildStepsMock
-      jobName="PR-671"
-      jobDisabled=jobDisabled
-      isAuthenticated=true
-      event=eventMock
-      prEvents=prEvents
-      onStart=(action externalStart)
-      reloadBuild=(action reloadCb)
+      @buildStatus="ABORTED"
+      @buildStart="2016-11-04T20:09:41.238Z"
+      @buildSteps={{this.buildStepsMock}}
+      @jobName="PR-671"
+      @jobDisabled={{this.jobDisabled}}
+      @isAuthenticated={{true}}
+      @event={{this.eventMock}}
+      @prEvents={{this.prEvents}}
+      @onStart={{action this.externalStart}}
+      @reloadBuild={{action this.reloadCb}}
     />`);
 
     assert.dom('button').hasText('Restart');
@@ -392,8 +392,9 @@ module('Integration | Component | build banner', function (hooks) {
   });
 
   test('it renders a stop button for running job when authenticated', async function (assert) {
-    assert.expect(4);
+    assert.expect(5);
     this.set('willRender', () => {
+      console.log('will render');
       assert.ok(true);
     });
 
@@ -409,16 +410,16 @@ module('Integration | Component | build banner', function (hooks) {
     await render(hbs`<BuildBanner
       @buildContainer="node:6"
       @duration="5 seconds"
-      buildStatus="RUNNING"
-      buildStart="2016-11-04T20:09:41.238Z"
-      buildSteps=buildStepsMock
-      jobName="main"
-      jobDisabled=jobDisabled
-      isAuthenticated=true
-      event=eventMock
-      prEvents=prEvents
-      onStop=(action externalStop)
-      reloadBuild=(action willRender)
+      @buildStatus="RUNNING"
+      @buildStart="2016-11-04T20:09:41.238Z"
+      @buildSteps={{this.buildStepsMock}}
+      @jobName="main"
+      @jobDisabled={{this.jobDisabled}}
+      @isAuthenticated={{true}}
+      @event={{this.eventMock}}
+      @prEvents={{this.prEvents}}
+      @onStop={{action this.externalStop}}
+      @reloadBuild={{action this.willRender}}
     />`);
 
     assert.dom('button').hasText('Stop');
@@ -426,7 +427,7 @@ module('Integration | Component | build banner', function (hooks) {
   });
 
   test('it renders a stop button for running disabled job when authenticated', async function (assert) {
-    assert.expect(5);
+    assert.expect(6);
     this.set('willRender', () => {
       assert.ok(true);
     });
@@ -443,16 +444,16 @@ module('Integration | Component | build banner', function (hooks) {
     await render(hbs`<BuildBanner
       @buildContainer="node:6"
       @duration="5 seconds"
-      buildStatus="RUNNING"
-      buildStart="2016-11-04T20:09:41.238Z"
-      buildSteps=buildStepsMock
-      jobName="main"
-      jobDisabled=jobDisabled
-      isAuthenticated=true
-      event=eventMock
-      prEvents=prEvents
-      onStop=(action externalStop)
-      reloadBuild=(action willRender)
+      @buildStatus="RUNNING"
+      @buildStart="2016-11-04T20:09:41.238Z"
+      @buildSteps={{this.buildStepsMock}}
+      @jobName="main"
+      @jobDisabled={{this.jobDisabled}}
+      @isAuthenticated={{true}}
+      @event={{this.eventMock}}
+      @prEvents={{this.prEvents}}
+      @onStop={{action this.externalStop}}
+      @reloadBuild={{action this.willRender}}
     />`);
 
     assert.dom('button').hasText('Stop');
@@ -461,7 +462,7 @@ module('Integration | Component | build banner', function (hooks) {
   });
 
   test('it renders a stop button for blocked job when authenticated', async function (assert) {
-    assert.expect(4);
+    assert.expect(5);
     this.set('willRender', () => {
       assert.ok(true);
     });
@@ -478,16 +479,16 @@ module('Integration | Component | build banner', function (hooks) {
     await render(hbs`<BuildBanner
       @buildContainer="node:6"
       @duration="5 seconds"
-      buildStatus="BLOCKED"
-      buildStart="2016-11-04T20:09:41.238Z"
-      buildSteps=buildStepsMock
-      jobName="main"
-      jobDisabled=jobDisabled
-      isAuthenticated=true
-      event=eventMock
-      prEvents=prEvents
-      onStop=(action externalStop)
-      reloadBuild=(action willRender)
+      @buildStatus="BLOCKED"
+      @buildStart="2016-11-04T20:09:41.238Z"
+      @buildSteps={{this.buildStepsMock}}
+      @jobName="main"
+      @jobDisabled={{this.jobDisabled}}
+      @isAuthenticated={{true}}
+      @event={{this.eventMock}}
+      @prEvents={{this.prEvents}}
+      @onStop={{action this.externalStop}}
+      @reloadBuild={{action this.willRender}}
     />`);
 
     assert.dom('button').hasText('Stop');
@@ -519,19 +520,18 @@ module('Integration | Component | build banner', function (hooks) {
       @buildContainer="node:6"
       @duration="5 seconds"
       @buildId=123
-      buildMeta=buildMetaMock
-      buildStatus="SUCCESS"
-      buildStart="2016-11-04T20:09:41.238Z"
-      buildSteps=buildStepsMock
-      jobId=1
-      jobDisabled=jobDisabled
-      jobName="main"
-      isAuthenticated=true
-      event=eventMock
-      pipelineId=456
-      pipelineName="d2lam/mytest"
-      prNumber=null
-      prEvents=prEvents
+      @buildMeta={{this.buildMetaMock}}
+      @buildStatus="SUCCESS"
+      @buildStart="2016-11-04T20:09:41.238Z"
+      @buildSteps={{this.buildStepsMock}}
+      @jobId=1
+      @jobDisabled={{this.jobDisabled}}
+      @jobName="main"
+      @isAuthenticated={{true}}
+      @event={{this.eventMock}}
+      @pipelineId=456
+      @pipelineName="d2lam/mytest"
+      @prEvents={{this.prEvents}}
     />`);
 
     return settled().then(() => {
@@ -568,17 +568,17 @@ module('Integration | Component | build banner', function (hooks) {
       @buildContainer="node:6"
       @duration="5 seconds"
       @buildId=123
-      buildMeta=buildMetaMock
-      buildStatus="RUNNING"
-      buildStart="2016-11-04T20:09:41.238Z"
-      buildSteps=buildStepsMock
-      jobId=1
-      jobDisabled=jobDisabled
-      jobName="main"
-      isAuthenticated=true
-      event=eventMock
-      reloadBuild=(action reloadCb)
-      prEvents=prEvents
+      @buildMeta={{this.buildMetaMock}}
+      @buildStatus="RUNNING"
+      @buildStart="2016-11-04T20:09:41.238Z"
+      @buildSteps={{this.buildStepsMock}}
+      @jobId=1
+      @jobDisabled={{this.jobDisabled}}
+      @jobName="main"
+      @isAuthenticated={{true}}
+      @event={{this.eventMock}}
+      @reloadBuild={{action this.reloadCb}}
+      @prEvents={{this.prEvents}}
     />`);
 
     return settled().then(() => {
@@ -624,16 +624,16 @@ module('Integration | Component | build banner', function (hooks) {
       @buildContainer="node:6"
       @duration="5 seconds"
       @buildId=123
-      buildStatus="SUCCESS"
-      buildStart="2016-11-04T20:09:41.238Z"
-      buildSteps=buildStepsMock
-      buildMeta=buildMetaMock
-      jobId=1
-      jobDisabled=jobDisabled
-      jobName="main"
-      isAuthenticated=true
-      event=eventMock
-      prEvents=prEvents
+      @buildStatus="SUCCESS"
+      @buildStart="2016-11-04T20:09:41.238Z"
+      @buildSteps={{this.buildStepsMock}}
+      @buildMeta={{this.buildMetaMock}}
+      @jobId=1
+      @jobDisabled={{this.jobDisabled}}
+      @jobName="main"
+      @isAuthenticated={{true}}
+      @event={{this.eventMock}}
+      @prEvents={{this.prEvents}}
     />`);
 
     return settled().then(() => {
@@ -672,16 +672,16 @@ module('Integration | Component | build banner', function (hooks) {
       @buildContainer="node:6"
       @duration="5 seconds"
       @buildId=123
-      buildStatus="SUCCESS"
-      buildStart="2016-11-04T20:09:41.238Z"
-      buildSteps=buildStepsMock
-      buildMeta=buildMetaMock
-      jobId=1
-      jobDisabled=jobDisabled
-      jobName="main"
-      isAuthenticated=true
-      event=eventMock
-      prEvents=prEvents
+      @buildStatus="SUCCESS"
+      @buildStart="2016-11-04T20:09:41.238Z"
+      @buildSteps={{this.buildStepsMock}}
+      @buildMeta={{this.buildMetaMock}}
+      @jobId=1
+      @jobDisabled={{this.jobDisabled}}
+      @jobName="main"
+      @isAuthenticated={{true}}
+      @event={{this.eventMock}}
+      @prEvents={{this.prEvents}}
     />`);
 
     return settled().then(() => {
@@ -708,15 +708,15 @@ module('Integration | Component | build banner', function (hooks) {
       @buildContainer="node:6"
       @duration="5 seconds"
       @buildId=123
-      buildStatus="SUCCESS"
-      buildStart="2016-11-04T20:09:41.238Z"
-      buildSteps=buildStepsMock
-      jobId=1
-      jobDisabled=jobDisabled
-      jobName="main"
-      isAuthenticated=true
-      event=eventMock
-      prEvents=prEvents
+      @buildStatus="SUCCESS"
+      @buildStart="2016-11-04T20:09:41.238Z"
+      @buildSteps={{this.buildStepsMock}}
+      @jobId=1
+      @jobDisabled={{this.jobDisabled}}
+      @jobName="main"
+      @isAuthenticated={{true}}
+      @event={{this.eventMock}}
+      @prEvents={{this.prEvents}}
     />`);
 
     return settled().then(() => {
@@ -745,16 +745,16 @@ module('Integration | Component | build banner', function (hooks) {
       @buildContainer="node:6"
       @duration="5 seconds"
       @buildId=123
-      buildStatus="UNSTABLE"
-      buildStart="2016-11-04T20:09:41.238Z"
-      buildSteps=buildStepsMock
-      jobId=1
-      jobDisabled=jobDisabled
-      jobName="main"
-      isAuthenticated=true
-      event=eventMock
-      reloadBuild=(action reloadCb)
-      prEvents=prEvents
+      @buildStatus="UNSTABLE"
+      @buildStart="2016-11-04T20:09:41.238Z"
+      @buildSteps={{this.buildStepsMock}}
+      @jobId=1
+      @jobDisabled={{this.jobDisabled}}
+      @jobName="main"
+      @isAuthenticated={{true}}
+      @event={{this.eventMock}}
+      @reloadBuild={{action this.reloadCb}}
+      @prEvents={{this.prEvents}}
     />`);
 
     return settled().then(() => {
