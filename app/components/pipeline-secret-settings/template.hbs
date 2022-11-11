@@ -12,10 +12,7 @@
 <p>
   {{#if this.pipeline.configPipelineId}}
     Secrets are inherited from the
-    <LinkTo @route="pipeline.secrets" @model={{this.pipeline.configPipelineId}}>
-      parent pipeline
-    </LinkTo>
-    . You may override a secret or revert it back to its original value.
+    <LinkTo @route="pipeline.secrets" @model={{this.pipeline.configPipelineId}}>parent pipeline</LinkTo>. You may override a secret or revert it back to its original value.
   {{else}}
     User secrets must also be added to the Screwdriver YAML.
   {{/if}}

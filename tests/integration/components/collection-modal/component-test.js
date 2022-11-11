@@ -35,8 +35,6 @@ module('Integration | Component | collection modal', function (hooks) {
 
     await render(hbs`<CollectionModal @showModal={{this.showModal}} />`);
 
-    // await this.pauseTest();
-
     assert.dom('.modal-title').hasText('Create New Collection');
     assert.dom('.name.control-label label').hasText('Collection Name');
     assert.dom('.description.control-label label').hasText('Description');

@@ -1333,7 +1333,6 @@ module('Integration | Component | collection view', function (hooks) {
 
     // remove these selected pipelines
     await click('.copy-pipeline button');
-    await this.pauseTest();
     await click('.copy-pipeline .dropdown-menu li:nth-of-type(2) span');
   });
 

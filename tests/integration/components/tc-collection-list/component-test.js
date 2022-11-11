@@ -38,12 +38,12 @@ module('Integration | Component | tc collection list', function (hooks) {
       this.set(prop, TEST_TEMPLATES[prop])
     );
 
-    await render(hbs`{{#tc-collection-list
-      model=model
-      collectionType="Collection"
-    }}
-      This is a collection
-    {{/tc-collection-list}}`);
+    await render(hbs`<TcCollectionList
+      @model={{this.model}}
+      @collectionType="Collection"
+    />
+    "This is a collection"
+    `);
 
     assert.dom('header h4 a').hasText('Collection Docs');
     assert
@@ -60,13 +60,13 @@ module('Integration | Component | tc collection list', function (hooks) {
       this.set(prop, TEST_TEMPLATES[prop])
     );
 
-    await render(hbs`{{#tc-collection-list
-      model=model
-      filteringNamespace=targetNamespace
-      collectionType="Collection"
-    }}
-      This is a collection
-    {{/tc-collection-list}}`);
+    await render(hbs`<TcCollectionList
+      @model={{this.model}}
+      @filteringNamespace={{this.targetNamespace}}
+      @collectionType="Collection"
+    />
+      "This is a collection"
+    `);
 
     assert.dom('header h4 a').hasText('Collection Docs');
     assert

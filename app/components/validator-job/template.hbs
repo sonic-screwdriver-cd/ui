@@ -1,9 +1,7 @@
 {{#if this.collapsible}}
   <h4 class="job" {{action "nameClick"}}>
     <FaIcon @icon={{if this.isOpen "minus-square" "plus-square"}} />
-    {{this.name}}{{#if this.index}}
-      .{{this.index}}
-    {{/if}}
+    {{this.name}}{{#if this.index}}.{{this.index}}{{/if}}
   </h4>
 {{/if}}
 {{#if this.getTemplateName}}
@@ -307,9 +305,7 @@
         <li>
           <span class="name">
             <a href="/commands/{{value.command}}/{{value.version}}">
-              {{value.command}}{{#if value.version}}
-                @{{value.version}}
-              {{/if}}
+              {{value.command}}{{#if value.version}}@{{value.version}}{{/if}}
             </a>
           </span>
         </li>
