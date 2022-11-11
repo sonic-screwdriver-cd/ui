@@ -24,16 +24,16 @@
             @label="Collection Name"
             @value={{this.name}}
             @onChange={{action (mut this.name)}}
-            class="control-label" as |el|
+            class="control-label name" as |el|
           >
             <el.control placeholder="Name" class="name-input form-control" required />
           </form.element>
           <form.element
-            @controlType="Textarea"
+            @controlType="textarea"
             @label="Description"
             @value={{this.description}}
             @onChange={{action (mut this.description)}}
-            class="control-label" as |el|
+            class="control-label description" as |el|
           >
             <el.control placeholder="Description for the collection" class="form-control description-input" />
           </form.element>

@@ -17,9 +17,11 @@
   <dd.menu @align="right" class="dropdown" as |menu|>
     {{#each this.normalCollections as |collection|}}
       <menu.item>
-        <span onclick={{action "addToCollection" collection}}>
-          {{collection.name}}
-        </span>
+        <li>
+          <span onclick={{action "addToCollection" collection}}>
+            {{collection.name}}
+          </span>
+        </li>
       </menu.item>
     {{/each}}
     <li>
