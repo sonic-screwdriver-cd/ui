@@ -144,6 +144,15 @@ export default Controller.extend({
     const { build } = this;
     const status = build.get('status');
 
+    if (
+      Notification.permission === 'granted' &&
+      ['SUCCESS', 'FAILURE', 'FIXED'].includes(status)
+    ) {
+      new Notification(`Job: ${this.job.name}`, {
+        body: `${status}`
+      });
+    }
+
     // reload again in a little bit if queued
     if (!this.loading) {
       if (['QUEUED', 'RUNNING'].includes(status)) {

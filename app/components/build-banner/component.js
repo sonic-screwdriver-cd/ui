@@ -66,6 +66,15 @@ export default Component.extend({
 
   buildAction: computed('buildEnd', 'buildStatus', {
     get() {
+      if (!['granted', 'denied'].includes(Notification.permission)) {
+        Notification.requestPermission().then(permission => {
+          if (permission === 'granted') {
+            new Notification('Screwdriver.cd', {
+              body: 'Enabled Push Notification.'
+            });
+          }
+        });
+      }
       if (isActiveBuild(this.buildStatus, this.buildEnd)) {
         return 'Stop';
       }
