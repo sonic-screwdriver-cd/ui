@@ -310,7 +310,18 @@ module(
 
     test('it closes modal on success', async function (assert) {
       const shuttle = this.owner.lookup('service:shuttle');
-      const shuttleStub = sinon.stub(shuttle, 'fetchFromApi').resolves();
+      const router = this.owner.lookup('service:router');
+      const shuttleStub = sinon.stub(shuttle, 'fetchFromApi').resolves({
+        response: { id: 456 },
+        jqXHR: {
+          getResponseHeader: sinon
+            .stub()
+            .withArgs('X-Status-Message')
+            .returns(null),
+          getAllResponseHeaders: sinon.stub().returns('')
+        }
+      });
+      const transitionToStub = sinon.stub(router, 'transitionTo');
       const closeModalSpy = sinon.spy();
 
       this.setProperties({
@@ -331,6 +342,7 @@ module(
 
       assert.equal(shuttleStub.calledOnce, true);
       assert.equal(closeModalSpy.calledOnce, true);
+      assert.equal(transitionToStub.calledOnce, true);
     });
 
     test('it displays error message when API call fails', async function (assert) {
